@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<com.tikal.jenkins.plugins.multijob.MultiJobBuild plugin="jenkins-multijob-plugin@1.28">
+  <actions>
+    <hudson.model.CauseAction>
+      <causeBag class="linked-hash-map">
+        <entry>
+          <hudson.model.Cause_-UserIdCause>
+            <userId>root</userId>
+          </hudson.model.Cause_-UserIdCause>
+          <int>1</int>
+        </entry>
+      </causeBag>
+    </hudson.model.CauseAction>
+    <org.jenkinsci.plugins.envinject.EnvInjectPluginAction plugin="envinject@2.1.5"/>
+    <org.jenkinsci.plugins.envinject.EnvInjectBuilderContributionAction plugin="envinject@2.1.5"/>
+    <org.jenkinsci.plugins.envinject.EnvInjectBuilderContributionAction plugin="envinject@2.1.5"/>
+    <org.jenkinsci.plugins.envinject.EnvInjectBuilderContributionAction plugin="envinject@2.1.5"/>
+    <org.jenkinsci.plugins.envinject.EnvInjectBuilderContributionAction plugin="envinject@2.1.5"/>
+    <org.jenkinsci.plugins.envinject.EnvInjectBuilderContributionAction plugin="envinject@2.1.5"/>
+    <org.jenkinsci.plugins.envinject.EnvInjectBuilderContributionAction plugin="envinject@2.1.5"/>
+    <org.jenkinsci.plugins.envinject.EnvInjectBuilderContributionAction plugin="envinject@2.1.5"/>
+    <org.jenkinsci.plugins.envinject.EnvInjectBuilderContributionAction plugin="envinject@2.1.5"/>
+    <org.jenkinsci.plugins.envinject.EnvInjectBuilderContributionAction plugin="envinject@2.1.5"/>
+    <com.tikal.jenkins.plugins.multijob.MultiJobResumeBuild>
+      <run class="com.tikal.jenkins.plugins.multijob.MultiJobBuild" reference="../../.."/>
+    </com.tikal.jenkins.plugins.multijob.MultiJobResumeBuild>
+  </actions>
+  <queueId>9</queueId>
+  <timestamp>1515433214339</timestamp>
+  <startTime>1515433214343</startTime>
+  <result>FAILURE</result>
+  <duration>57124</duration>
+  <charset>UTF-8</charset>
+  <keepLog>false</keepLog>
+  <builtOn></builtOn>
+  <workspace>/home/gc/.jenkins/workspace/Pet Clinic</workspace>
+  <hudsonVersion>2.89.2</hudsonVersion>
+  <scm class="hudson.scm.NullChangeLogParser"/>
+  <culprits class="com.google.common.collect.EmptyImmutableSortedSet"/>
+  <subBuilds class="java.util.concurrent.CopyOnWriteArrayList">
+    <com.tikal.jenkins.plugins.multijob.MultiJobBuild_-SubBuild>
+      <parentJobName>Pet Clinic</parentJobName>
+      <parentBuildNumber>3</parentBuildNumber>
+      <jobName>pet_git_checkout</jobName>
+      <buildNumber>3</buildNumber>
+      <phaseName>Git checkout</phaseName>
+      <result>SUCCESS</result>
+      <icon>blue.png</icon>
+      <duration>1,3 секунды</duration>
+      <url>job/pet_git_checkout/3/</url>
+      <retry>false</retry>
+      <aborted>false</aborted>
+      <build class="build" resolves-to="hudson.model.Run$Replacer">
+        <id>pet_git_checkout#3</id>
+      </build>
+    </com.tikal.jenkins.plugins.multijob.MultiJobBuild_-SubBuild>
+    <com.tikal.jenkins.plugins.multijob.MultiJobBuild_-SubBuild>
+      <parentJobName>Pet Clinic</parentJobName>
+      <parentBuildNumber>3</parentBuildNumber>
+      <jobName>pet_maven3_build</jobName>
+      <buildNumber>3</buildNumber>
+      <phaseName>Pet Clinic maven 3 build</phaseName>
+      <result>SUCCESS</result>
+      <icon>blue.png</icon>
+      <duration>22 секунд</duration>
+      <url>job/pet_maven3_build/3/</url>
+      <retry>false</retry>
+      <aborted>false</aborted>
+      <build class="build" resolves-to="hudson.model.Run$Replacer">
+        <id>pet_maven3_build#3</id>
+      </build>
+    </com.tikal.jenkins.plugins.multijob.MultiJobBuild_-SubBuild>
+    <com.tikal.jenkins.plugins.multijob.MultiJobBuild_-SubBuild>
+      <parentJobName>Pet Clinic</parentJobName>
+      <parentBuildNumber>3</parentBuildNumber>
+      <jobName>pet_local_deploy</jobName>
+      <buildNumber>3</buildNumber>
+      <phaseName>Pet Clinit start instance</phaseName>
+      <result>FAILURE</result>
+      <icon>red.png</icon>
+      <duration>53 ms</duration>
+      <url>job/pet_local_deploy/3/</url>
+      <retry>false</retry>
+      <aborted>false</aborted>
+      <build class="build" resolves-to="hudson.model.Run$Replacer">
+        <id>pet_local_deploy#3</id>
+      </build>
+    </com.tikal.jenkins.plugins.multijob.MultiJobBuild_-SubBuild>
+  </subBuilds>
+  <changeSets>
+    <run class="com.tikal.jenkins.plugins.multijob.MultiJobBuild" reference="../.."/>
+    <build class="com.tikal.jenkins.plugins.multijob.MultiJobBuild" reference="../.."/>
+  </changeSets>
+  <subBuildsMap>
+    <entry>
+      <string>Pet Clinit start instancepet_local_deploy3</string>
+      <com.tikal.jenkins.plugins.multijob.MultiJobBuild_-SubBuild reference="../../../subBuilds/com.tikal.jenkins.plugins.multijob.MultiJobBuild_-SubBuild[3]"/>
+    </entry>
+    <entry>
+      <string>Pet Clinic maven 3 buildpet_maven3_build3</string>
+      <com.tikal.jenkins.plugins.multijob.MultiJobBuild_-SubBuild reference="../../../subBuilds/com.tikal.jenkins.plugins.multijob.MultiJobBuild_-SubBuild[2]"/>
+    </entry>
+    <entry>
+      <string>Git checkoutpet_git_checkout3</string>
+      <com.tikal.jenkins.plugins.multijob.MultiJobBuild_-SubBuild reference="../../../subBuilds/com.tikal.jenkins.plugins.multijob.MultiJobBuild_-SubBuild"/>
+    </entry>
+  </subBuildsMap>
+</com.tikal.jenkins.plugins.multijob.MultiJobBuild>

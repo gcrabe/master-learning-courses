@@ -1,0 +1,10 @@
+Started by upstream project "[8mha:////4KBorTbnFyQnT+HHNxCRS7xLYTFfQgOGpZrYR7vfp3N3AAAAnB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAwuoBn6WflJ+gGpJapGBs5ASzOT9QE8mNoXxwAAAA==[0mPet Clinic" build number [8mha:////4DUg8YF/yfTfEv6HDs00CM5Jkw9mwN8o8/DbA0yuO6lGAAAAnR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLQIwSBmH9rPwk/YDUElUjA2egpZnJ+oYA9Qifv8gAAAA=[0m1
+originally caused by:
+ Started by user [8mha:////4JIM7udpI+60qHh4msZxWzrnJV/2ncuyR1KUkbqIJbrsAAAAlh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAyWEgYu/dLi1CL9ovz8EgDKVWzSvwAAAA==[0mEgor
+[EnvInject] - Loading node environment variables.
+Building in workspace /home/gc/.jenkins/pet_clinic
+[pet_clinic] $ /bin/sh -xe /tmp/jenkins439190154273805104.sh
++ ../startup.sh
+/tmp/jenkins439190154273805104.sh: 2: /tmp/jenkins439190154273805104.sh: ../startup.sh: Permission denied
+Build step 'Выполнить команду shell' marked build as failure
+Finished: FAILURE

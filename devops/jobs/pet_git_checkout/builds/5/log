@@ -1,0 +1,19 @@
+Started by upstream project "[8mha:////4KBorTbnFyQnT+HHNxCRS7xLYTFfQgOGpZrYR7vfp3N3AAAAnB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAwuoBn6WflJ+gGpJapGBs5ASzOT9QE8mNoXxwAAAA==[0mPet Clinic" build number [8mha:////4FLSJOTOGFr8eb02X1G+4BtbIZJLhwbXXGDpJ67OjzDtAAAAnR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLQIwSBmH9rPwk/YDUElUjA2egpZnJ+qYA7MzyuMgAAAA=[0m5
+originally caused by:
+ Started by user [8mha:////4JIM7udpI+60qHh4msZxWzrnJV/2ncuyR1KUkbqIJbrsAAAAlh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAyWEgYu/dLi1CL9ovz8EgDKVWzSvwAAAA==[0mEgor
+[EnvInject] - Loading node environment variables.
+Building in workspace /home/gc/.jenkins/pet_clinic
+ > git rev-parse --is-inside-work-tree # timeout=10
+Fetching changes from the remote Git repository
+ > git config remote.origin.url https://github.com/spring-projects/spring-petclinic.git # timeout=10
+Fetching upstream changes from https://github.com/spring-projects/spring-petclinic.git
+ > git --version # timeout=10
+ > git fetch --tags --progress https://github.com/spring-projects/spring-petclinic.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision c36452a2c34443ae26b4ecbba4f149906af14717 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f c36452a2c34443ae26b4ecbba4f149906af14717
+Commit message: "Use leading / in app URL"
+ > git rev-list --no-walk c36452a2c34443ae26b4ecbba4f149906af14717 # timeout=10
+Finished: SUCCESS

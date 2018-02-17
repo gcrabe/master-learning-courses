@@ -1,0 +1,24 @@
+Started by upstream project "[8mha:////4KBorTbnFyQnT+HHNxCRS7xLYTFfQgOGpZrYR7vfp3N3AAAAnB+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAwuoBn6WflJ+gGpJapGBs5ASzOT9QE8mNoXxwAAAA==[0mPet Clinic" build number [8mha:////4DUg8YF/yfTfEv6HDs00CM5Jkw9mwN8o8/DbA0yuO6lGAAAAnR+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLQIwSBmH9rPwk/YDUElUjA2egpZnJ+oYA9Qifv8gAAAA=[0m1
+originally caused by:
+ Started by user [8mha:////4JIM7udpI+60qHh4msZxWzrnJV/2ncuyR1KUkbqIJbrsAAAAlh+LCAAAAAAAAP9b85aBtbiIQTGjNKU4P08vOT+vOD8nVc83PyU1x6OyILUoJzMv2y+/JJUBAhiZGBgqihhk0NSjKDWzXb3RdlLBUSYGJk8GtpzUvPSSDB8G5tKinBIGIZ+sxLJE/ZzEvHT94JKizLx0a6BxUmjGOUNodHsLgAyWEgYu/dLi1CL9ovz8EgDKVWzSvwAAAA==[0mEgor
+[EnvInject] - Loading node environment variables.
+Building in workspace /home/gc/.jenkins/pet_clinic
+Cloning the remote Git repository
+Cloning repository https://github.com/spring-projects/spring-petclinic.git
+ > git init /home/gc/.jenkins/pet_clinic # timeout=10
+Fetching upstream changes from https://github.com/spring-projects/spring-petclinic.git
+ > git --version # timeout=10
+ > git fetch --tags --progress https://github.com/spring-projects/spring-petclinic.git +refs/heads/*:refs/remotes/origin/*
+ > git config remote.origin.url https://github.com/spring-projects/spring-petclinic.git # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url https://github.com/spring-projects/spring-petclinic.git # timeout=10
+Fetching upstream changes from https://github.com/spring-projects/spring-petclinic.git
+ > git fetch --tags --progress https://github.com/spring-projects/spring-petclinic.git +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/master^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/master^{commit} # timeout=10
+Checking out Revision c36452a2c34443ae26b4ecbba4f149906af14717 (refs/remotes/origin/master)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f c36452a2c34443ae26b4ecbba4f149906af14717
+Commit message: "Use leading / in app URL"
+First time build. Skipping changelog.
+Finished: SUCCESS
