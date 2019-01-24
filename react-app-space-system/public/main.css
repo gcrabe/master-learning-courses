@@ -1,0 +1,177 @@
+
+*, :after, :before {
+    box-sizing: border-box
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale
+}
+
+code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace
+}
+
+#root, body, html {
+    height: 100%
+}
+
+h2, h3 {
+    margin: 0 0 .5em
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    to {
+        -webkit-transform: rotate(1turn);
+        transform: rotate(1turn)
+    }
+}
+
+@keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+    to {
+        -webkit-transform: rotate(1turn);
+        transform: rotate(1turn)
+    }
+}
+
+.loader {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+.loader img {
+    -webkit-animation: App-logo-spin 20s linear infinite;
+    animation: App-logo-spin 20s linear infinite;
+    height: 40vmin
+}
+
+.planet-info label {
+    display: block;
+    margin-bottom: .5em
+}
+
+.planet-info input {
+    display: block;
+    width: 100%
+}
+
+.planets-list, .planets-list > li {
+    margin: 0;
+    padding: 0;
+    list-style-type: none
+}
+
+.planets-list > li {
+    overflow: hidden;
+    border: 1px solid;
+    margin: 1em 0;
+    padding: .5em
+}
+
+.planets-list .active-planet {
+    background: silver
+}
+
+.planets-info .action-btn {
+    float: right
+}
+
+.planets-info {
+    width: 15em;
+    max-width: 20%;
+    float: left;
+    height: 100%;
+    overflow: auto;
+    padding: 1em
+}
+
+.space {
+    height: 100%
+}
+
+.satellite-area {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    -webkit-transform-origin: center;
+    transform-origin: center;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%)
+}
+
+.satellite-wrapper {
+    width: 100%;
+    height: 100%;
+    -webkit-animation: spin 3s linear infinite both;
+    animation: spin 3s linear infinite both;
+    position: relative
+}
+
+.satellite-wrapper:before {
+    content: "";
+    display: block;
+    padding-top: 100%
+}
+
+.satellite-inner {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    animation: spin 3s linear infinite reverse both;
+    background: silver;
+    border-radius: 50%;
+    vertical-align: middle
+}
+
+.satellite-inner:before {
+    content: "";
+    display: inline-block;
+    padding-top: 100%;
+    vertical-align: middle
+}
+
+.space {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #00f;
+    text-align: center;
+    white-space: nowrap
+}
+
+.sun {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    background: orange;
+    width: 100px
+}
+
+.sun, .sun:before {
+    vertical-align: middle
+}
+
+.sun:before {
+    content: "";
+    display: inline-block;
+    padding-top: 100%
+}
+
+/*# sourceMappingURL=main.9788ede0.chunk.css.map */
