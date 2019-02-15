@@ -1,0 +1,44 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dwh] (Schema)
+       [stg] (Schema)
+       [dwh].[DimDate] (Table)
+       [dwh].[DimGeography] (Table)
+       [dwh].[DimGeographySCD] (Table)
+       [dwh].[FactCrime] (Table)
+       [dwh].[FactPopulation] (Table)
+       [dwh].[DimCrimeType] (Table)
+       [stg].[UNCrimeData_Cleaned] (Table)
+       [stg].[WBPopulationData_Cleaned] (Table)
+       [stg].[CountryMatched] (Table)
+       [stg].[UNCrimeData] (Table)
+       [stg].[WBPopulationData] (Table)
+       [dwh].[DF_DWH_DimGeography_CreateDate] (Default Constraint)
+       [dwh].[DF_DWH_DimGeography_ModifiedDate] (Default Constraint)
+       [dwh].[DF_DWH_DimGeographySCD_CreateDate] (Default Constraint)
+       [dwh].[DF_DWH_DimGeographySCD_ModifiedDate] (Default Constraint)
+       [dwh].[DF_DWH_FactCrime_CreateDate] (Default Constraint)
+       [dwh].[DF_DWH_FactCrime_ModifiedDate] (Default Constraint)
+       [dwh].[DF_DWH_FactPopulation_CreateDate] (Default Constraint)
+       [dwh].[DF_DWH_FactPopulation_ModifiedDate] (Default Constraint)
+       [dwh].[DF_DWH_DimCrimeType_CreateDate] (Default Constraint)
+       [dwh].[DF_DWH_DimCrimeType_ModifiedDate] (Default Constraint)
+       [stg].[DF_Test1_UNCD_Cleaned_sysDateCreated] (Default Constraint)
+       [stg].[DF_STG_POPULTAION_Cleaned] (Default Constraint)
+       Default Constraint: unnamed constraint on [stg].[CountryMatched] (Default Constraint)
+       Default Constraint: unnamed constraint on [stg].[CountryMatched] (Default Constraint)
+       [stg].[DF_Test1_UNS_sysDateCreated] (Default Constraint)
+       [stg].[DF_STG_POPULTAION] (Default Constraint)
+       [dwh].[usp_UpdateDimDate] (Procedure)
+
+** Supporting actions

@@ -1,0 +1,47 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       None
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Create
+       [dwh] (Schema)
+       [stg] (Schema)
+       [dwh].[DimFranchise] (Table)
+       [dwh].[DimDate] (Table)
+       [dwh].[DimGeography] (Table)
+       [dwh].[DimGeographySCD] (Table)
+       [dwh].[FactOrder] (Table)
+       [dwh].[FactCall] (Table)
+       [stg].[ServiceData_Cleaned] (Table)
+       [stg].[WBCallData_Cleaned] (Table)
+       [stg].[CountryMatched] (Table)
+       [stg].[ServiceData] (Table)
+       [stg].[WBCallData] (Table)
+       [dwh].[DF_DWH_DimFranchise_CreateDate] (Default Constraint)
+       [dwh].[DF_DWH_DimFranchise_ModifiedDate] (Default Constraint)
+       [dwh].[DF_DWH_DimGeography_CreateDate] (Default Constraint)
+       [dwh].[DF_DWH_DimGeography_ModifiedDate] (Default Constraint)
+       [dwh].[DF_DWH_DimGeographySCD_CreateDate] (Default Constraint)
+       [dwh].[DF_DWH_DimGeographySCD_ModifiedDate] (Default Constraint)
+       [dwh].[DF_DWH_FactCrime_CreateDate] (Default Constraint)
+       [dwh].[DF_DWH_FactCrime_ModifiedDate] (Default Constraint)
+       [dwh].[DF_DWH_FactPopulation_CreateDate] (Default Constraint)
+       [dwh].[DF_DWH_FactPopulation_ModifiedDate] (Default Constraint)
+       [stg].[DF_Test1_UNCD_Cleaned_sysDateCreated] (Default Constraint)
+       [stg].[DF_STG_POPULTAION_Cleaned] (Default Constraint)
+       Default Constraint: unnamed constraint on [stg].[CountryMatched] (Default Constraint)
+       Default Constraint: unnamed constraint on [stg].[CountryMatched] (Default Constraint)
+       [stg].[DF_Test1_UNS_sysDateCreated] (Default Constraint)
+       [stg].[DF_STG_POPULTAION] (Default Constraint)
+       [dwh].[usp_UpdateDimDate] (Procedure)
+
+** Supporting actions
+
+The project and target databases have different collation settings. Deployment errors might occur.
+

@@ -1,0 +1,20 @@
+﻿** Highlights
+     Tables that will be rebuilt
+       [stg].[UNCrimeData_Cleaned]
+       [stg].[WBPopulationData_Cleaned]
+     Clustered indexes that will be dropped
+       None
+     Clustered indexes that will be created
+       None
+     Possible data issues
+       None
+
+** User actions
+     Table rebuild
+       [stg].[UNCrimeData_Cleaned] (Table)
+       [stg].[WBPopulationData_Cleaned] (Table)
+
+** Supporting actions
+     Drop
+       [stg].[DF_Test1_UNCD_Cleaned_sysDateCreated] (Default Constraint)
+       [stg].[DF_STG_POPULTAION_Cleaned] (Default Constraint)

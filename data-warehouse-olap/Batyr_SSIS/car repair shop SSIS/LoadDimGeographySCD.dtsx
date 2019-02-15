@@ -1,0 +1,2947 @@
+﻿<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="3/30/2016 7:31:38 PM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="EPRUSARW0596"
+  DTS:CreatorName="SARATOV\Evseev_Kirill"
+  DTS:DTSID="{B2E9D8EF-857E-467C-829C-A7495AAD7914}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="LoadDimGeographySCD"
+  DTS:PackageType="5"
+  DTS:VersionBuild="64"
+  DTS:VersionGUID="{A96F5D61-15BB-4096-83F0-EAC3649E2593}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:Variables />
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Add dummy record (if full load)"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{9A2E3604-5422-4381-B0C4-955DDDEE3770}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Add dummy record (if full load)">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Disable">(DT_BOOL)( @[$Project::DontNeededFullLoad] )</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Add dummy record (if full load)\Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{67AA1890-1AB5-4D09-A2F3-AB09535682D5}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5CEE1F01-4F52-4DE3-8E2D-2797D8A18207}"
+              SQLTask:SqlStatementSource="SET IDENTITY_INSERT [dwh].[DimGeographySCD] ON&#xA;INSERT INTO [dwh].[DimGeographySCD]([DimCountryKey])&#xA;VALUES(-1)&#xA;SET IDENTITY_INSERT [dwh].[DimGeographySCD] OFF" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SEQC If full load is needed"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{D8B8344B-F661-409B-B8FA-520D1C47E18D}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC If full load is needed">
+      <DTS:Variables />
+      <DTS:PropertyExpression
+        DTS:Name="Disable">(DT_BOOL)( @[$Project::DontNeededFullLoad] )</DTS:PropertyExpression>
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC If full load is needed\SQL Truncate DimCountry SCD"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{4C265D65-AB0F-4278-8CE0-2537425BC666}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="SQL Truncate DimCountry SCD"
+          DTS:TaskContact="Execute SQL Task; Microsoft Corporation; SQL Server 2014; © 2014 Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5CEE1F01-4F52-4DE3-8E2D-2797D8A18207}"
+              SQLTask:SqlStatementSource="TRUNCATE TABLE dwh.DimGeographySCD;" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\SEQC Load Dim Country"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{F6B65932-F3F0-49CC-AB12-55418DB5E49E}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="SEQC Load Dim Country">
+      <DTS:Variables />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script"
+          DTS:CreationName="Microsoft.Pipeline"
+          DTS:Description="Data Flow Task"
+          DTS:DTSID="{0789DBAE-E9EA-435E-8C13-A7FEF951EF59}"
+          DTS:ExecutableType="Microsoft.Pipeline"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="DTF Load Dim Country With generated script"
+          DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+          <DTS:Variables />
+          <DTS:ObjectData>
+            <pipeline
+              version="1">
+              <components>
+                <component
+                  refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Conditional Split"
+                  componentClassID="Microsoft.ConditionalSplit"
+                  contactInfo="Conditional Split;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Routes data rows to different outputs depending on the content of the data. Use conditions (SSIS expressions) to specify which rows are routed. For example, separate records that need to be cleaned from those that are ready to be loaded or route only a subset of records."
+                  name="Conditional Split"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Conditional Split.Inputs[Conditional Split Input]"
+                      description="Input to the Conditional Split Transformation"
+                      name="Conditional Split Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Conditional Split.Inputs[Conditional Split Input].Columns[IsEqual]"
+                          cachedDataType="bool"
+                          cachedName="IsEqual"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\SC Historical Comparing.Outputs[Output 0].Columns[IsEqual]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Conditional Split.Outputs[Change and insert]"
+                      description="Output 1 of the Conditional Split Transformation"
+                      errorOrTruncationOperation="Computation"
+                      errorRowDisposition="FailComponent"
+                      exclusionGroup="1"
+                      name="Change and insert"
+                      synchronousInputId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Conditional Split.Inputs[Conditional Split Input]"
+                      truncationRowDisposition="FailComponent">
+                      <properties>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the expression. This expression version uses lineage identifiers instead of column names."
+                          name="Expression">((DT_BOOL)(#{Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\SC Historical Comparing.Outputs[Output 0].Columns[IsEqual]}) ==  FALSE )</property>
+                        <property
+                          containsID="true"
+                          dataType="System.String"
+                          description="Specifies the friendly version of the expression. This expression version uses column names."
+                          expressionType="Notify"
+                          name="FriendlyExpression">((DT_BOOL)(IsEqual) ==  FALSE )</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the position of the condition in the list of conditions that the transformation evaluates. The evaluation order is from the lowest to the highest value."
+                          name="EvaluationOrder">0</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Conditional Split.Outputs[Conditional Split Default Output]"
+                      description="Default Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      name="Conditional Split Default Output"
+                      synchronousInputId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Conditional Split.Inputs[Conditional Split Input]">
+                      <properties>
+                        <property
+                          dataType="System.Boolean"
+                          name="IsDefaultOut">true</property>
+                      </properties>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Conditional Split.Outputs[Conditional Split Error Output]"
+                      description="Error Output of the Conditional Split Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Conditional Split Error Output"
+                      synchronousInputId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Conditional Split.Inputs[Conditional Split Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Conditional Split.Outputs[Conditional Split Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column"
+                  componentClassID="Microsoft.DerivedColumn"
+                  contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                  description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                  name="Derived Column"
+                  usesDispositions="true">
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Inputs[Derived Column Input]"
+                      description="Input to the Derived Column Transformation"
+                      name="Derived Column Input">
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Outputs[Derived Column Output]"
+                      description="Default Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      name="Derived Column Output"
+                      synchronousInputId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Outputs[Derived Column Output].Columns[DateStart]"
+                          dataType="dbTimeStamp"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Outputs[Derived Column Output].Columns[DateStart]"
+                          name="DateStart"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">(DT_DBTIMESTAMP)(@[System::StartTime])</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">(DT_DBTIMESTAMP)(@[System::StartTime])</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Outputs[Derived Column Output].Columns[DateEnd]"
+                          dataType="i1"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Outputs[Derived Column Output].Columns[DateEnd]"
+                          name="DateEnd"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression">NULL(DT_I1)</property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression">NULL(DT_I1)</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Outputs[Derived Column Output].Columns[IsCurrent]"
+                          dataType="bool"
+                          errorOrTruncationOperation="Computation"
+                          errorRowDisposition="FailComponent"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Outputs[Derived Column Output].Columns[IsCurrent]"
+                          name="IsCurrent"
+                          truncationRowDisposition="FailComponent">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Expression"
+                              name="Expression"> TRUE </property>
+                            <property
+                              containsID="true"
+                              dataType="System.String"
+                              description="Derived Column Friendly Expression"
+                              expressionType="Notify"
+                              name="FriendlyExpression"> TRUE </property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Outputs[Derived Column Error Output]"
+                      description="Error Output of the Derived Column Transformation"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="Derived Column Error Output"
+                      synchronousInputId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Inputs[Derived Column Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join"
+                  componentClassID="Microsoft.MergeJoin"
+                  contactInfo="Merge Join;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Combine two sorted data flows into one using the FULL, LEFT, or INNER join. We recommend this transformation when data flows can be sorted at their sources."
+                  name="Merge Join"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the type of join to perform."
+                      name="JoinType"
+                      typeConverter="JoinType">1</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the number of columns in the ordering key."
+                      name="NumKeyColumns">1</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the null values are treated as equal values."
+                      name="TreatNullsAsEqual">true</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Indicates the requested maximum buffers per input before blocking."
+                      name="MaxBuffersPerInput">5</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Inputs[Merge Join Left Input]"
+                      hasSideEffects="true"
+                      name="Merge Join Left Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Inputs[Merge Join Left Input].Columns[Country]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Country"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort.Outputs[Sort Output].Columns[Country]" />
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Inputs[Merge Join Left Input].Columns[Region]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Region"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort.Outputs[Sort Output].Columns[Region]" />
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Inputs[Merge Join Left Input].Columns[SubRegion]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="SubRegion"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort.Outputs[Sort Output].Columns[SubRegion]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                    <input
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Inputs[Merge Join Right Input]"
+                      hasSideEffects="true"
+                      name="Merge Join Right Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Inputs[Merge Join Right Input].Columns[Country]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Country"
+                          cachedSortKeyPosition="1"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort 1.Outputs[Sort Output].Columns[Country]" />
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Inputs[Merge Join Right Input].Columns[Region]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Region"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort 1.Outputs[Sort Output].Columns[Region]" />
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Inputs[Merge Join Right Input].Columns[SubRegion]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="SubRegion"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort 1.Outputs[Sort Output].Columns[SubRegion]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output]"
+                      isSorted="true"
+                      name="Merge Join Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output].Columns[SRC_Region]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output].Columns[SRC_Region]"
+                          name="SRC_Region">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Inputs[Merge Join Left Input].Columns[Region]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output].Columns[SRC_SubRegion]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output].Columns[SRC_SubRegion]"
+                          name="SRC_SubRegion">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Inputs[Merge Join Left Input].Columns[SubRegion]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output].Columns[SRC_Country]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output].Columns[SRC_Country]"
+                          name="SRC_Country"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Inputs[Merge Join Left Input].Columns[Country]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output].Columns[DST_Region]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output].Columns[DST_Region]"
+                          name="DST_Region">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Inputs[Merge Join Right Input].Columns[Region]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output].Columns[DST_SubRegion]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output].Columns[DST_SubRegion]"
+                          name="DST_SubRegion">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Inputs[Merge Join Right Input].Columns[SubRegion]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output].Columns[DST_Country]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output].Columns[DST_Country]"
+                          name="DST_Country">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="The input column associated with this output column"
+                              name="InputColumnID">#{Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Inputs[Merge Join Right Input].Columns[Country]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Command"
+                  componentClassID="Microsoft.OLEDBCommand"
+                  contactInfo="OLE DB Command;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;2"
+                  description="Runs an SQL statement for each row in a data flow. For example, call a 'new employee setup' stored procedure for each row in the 'new employees' table. Note: running an SQL statement for each row of a large data flow may take a long time."
+                  name="OLE DB Command"
+                  usesDispositions="true"
+                  version="2">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      expressionType="Notify"
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">UPDATE [dwh].[DimGeographySCD] 
+SET [DateEnd] = ?, [IsCurrent] = 'False'
+WHERE [Country] = ? AND [DateEnd] IS NULL</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Command.Connections[OleDbConnection]"
+                      connectionManagerID="{5CEE1F01-4F52-4DE3-8E2D-2797D8A18207}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[OLEDB UNStatistics Connect]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Command.Inputs[OLE DB Command Input]"
+                      errorOrTruncationOperation="Command Execution"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Command Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Command.Inputs[OLE DB Command Input].Columns[DateStart]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="DateStart"
+                          externalMetadataColumnId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Outputs[Derived Column Output].Columns[DateStart]" />
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Command.Inputs[OLE DB Command Input].Columns[DST_Country]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="DST_Country"
+                          externalMetadataColumnId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output].Columns[DST_Country]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_0]"
+                          dataType="dbTimeStamp"
+                          name="Param_0">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Command.Inputs[OLE DB Command Input].ExternalColumns[Param_1]"
+                          dataType="wstr"
+                          length="255"
+                          name="Param_1">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Parameter information.  Matches OLE DB's DBPARAMFLAGSENUM values."
+                              name="DBParamInfoFlags">65</property>
+                          </properties>
+                        </externalMetadataColumn>
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Command.Outputs[OLE DB Command Output]"
+                      exclusionGroup="1"
+                      name="OLE DB Command Output"
+                      synchronousInputId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Command.Inputs[OLE DB Command Input]">
+                      <externalMetadataColumns />
+                    </output>
+                    <output
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Command.Outputs[OLE DB Command Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Command Error Output"
+                      synchronousInputId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Command.Inputs[OLE DB Command Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Command.Outputs[OLE DB Command Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination"
+                  componentClassID="Microsoft.OLEDBDestination"
+                  contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                  description="OLE DB Destination"
+                  name="OLE DB Destination"
+                  usesDispositions="true"
+                  version="4">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dwh].[DimGeographySCD]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">3</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepIdentity">false</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                      name="FastLoadKeepNulls">false</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                      name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                      name="FastLoadMaxInsertCommitSize">2147483647</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Connections[OleDbConnection]"
+                      connectionManagerID="{5CEE1F01-4F52-4DE3-8E2D-2797D8A18207}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[OLEDB UNStatistics Connect]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      errorOrTruncationOperation="Insert"
+                      errorRowDisposition="FailComponent"
+                      hasSideEffects="true"
+                      name="OLE DB Destination Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SRC_Region]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="SRC_Region"
+                          externalMetadataColumnId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output].Columns[SRC_Region]" />
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SRC_SubRegion]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="SRC_SubRegion"
+                          externalMetadataColumnId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SubRegion]"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output].Columns[SRC_SubRegion]" />
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[SRC_Country]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="SRC_Country"
+                          cachedSortKeyPosition="1"
+                          externalMetadataColumnId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output].Columns[SRC_Country]" />
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[IsCurrent]"
+                          cachedDataType="bool"
+                          cachedName="IsCurrent"
+                          externalMetadataColumnId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsCurrent]"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Outputs[Derived Column Output].Columns[IsCurrent]" />
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DateStart]"
+                          cachedDataType="dbTimeStamp"
+                          cachedName="DateStart"
+                          externalMetadataColumnId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateStart]"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Outputs[Derived Column Output].Columns[DateStart]" />
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[DateEnd]"
+                          cachedDataType="i1"
+                          cachedName="DateEnd"
+                          externalMetadataColumnId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateEnd]"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Outputs[Derived Column Output].Columns[DateEnd]" />
+                      </inputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DimCountryKey]"
+                          dataType="i4"
+                          name="DimCountryKey" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                          dataType="wstr"
+                          length="255"
+                          name="Region" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SubRegion]"
+                          dataType="wstr"
+                          length="255"
+                          name="SubRegion" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                          dataType="wstr"
+                          length="255"
+                          name="Country" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[IsCurrent]"
+                          dataType="bool"
+                          name="IsCurrent" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateStart]"
+                          dataType="dbTimeStamp"
+                          name="DateStart" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[DateEnd]"
+                          dataType="dbTimeStamp"
+                          name="DateEnd" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sysDateCreated]"
+                          dataType="dbTimeStamp"
+                          name="sysDateCreated" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[sysDateModified]"
+                          dataType="dbTimeStamp"
+                          name="sysDateModified" />
+                      </externalMetadataColumns>
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                      exclusionGroup="1"
+                      isErrorOut="true"
+                      name="OLE DB Destination Error Output"
+                      synchronousInputId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE_DB Dim Country SCD"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset">[dwh].[DimGeographySCD]</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT [Region]
+	,[SubRegion]
+	,[Country]
+FROM [dwh].[DimGeographySCD]
+WHERE [IsCurrent] = 'True'</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Connections[OleDbConnection]"
+                      connectionManagerID="{5CEE1F01-4F52-4DE3-8E2D-2797D8A18207}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[OLEDB UNStatistics Connect]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Output].Columns[Region]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Output].Columns[Region]"
+                          name="Region"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Output].Columns[SubRegion]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Output].ExternalColumns[SubRegion]"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Output].Columns[SubRegion]"
+                          name="SubRegion"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Output].Columns[Country]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Output].ExternalColumns[Country]"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Output].Columns[Country]"
+                          name="Country"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                          dataType="wstr"
+                          length="255"
+                          name="Region" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Output].ExternalColumns[SubRegion]"
+                          dataType="wstr"
+                          length="255"
+                          name="SubRegion" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Output].ExternalColumns[Country]"
+                          dataType="wstr"
+                          length="255"
+                          name="Country" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Error Output].Columns[Region]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Error Output].Columns[Region]"
+                          name="Region" />
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Error Output].Columns[SubRegion]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Error Output].Columns[SubRegion]"
+                          name="SubRegion" />
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Error Output].Columns[Country]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Error Output].Columns[Country]"
+                          name="Country" />
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging"
+                  componentClassID="Microsoft.OLEDBSource"
+                  contactInfo="OLE DB Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;7"
+                  description="OLE DB Source"
+                  name="OLE_DB Staging"
+                  usesDispositions="true"
+                  version="7">
+                  <properties>
+                    <property
+                      dataType="System.Int32"
+                      description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                      name="CommandTimeout">0</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the database object used to open a rowset."
+                      name="OpenRowset"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the variable that contains the name of the database object used to open a rowset."
+                      name="OpenRowsetVariable"></property>
+                    <property
+                      dataType="System.String"
+                      description="The SQL command to be executed."
+                      name="SqlCommand"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91">SELECT  DISTINCT UNCDC.[Region]
+		,UNCDC.[SubRegion]
+		,CM.[Country1]   as Country
+  FROM [stg].[ServiceData_Cleaned] as UNCDC
+	JOIN [stg].[CountryMatched] as CM
+		ON UNCDC.Country = CM.Country</property>
+                    <property
+                      dataType="System.String"
+                      description="The variable that contains the SQL command to be executed."
+                      name="SqlCommandVariable"></property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the column code page to use when code page information is unavailable from the data source."
+                      name="DefaultCodePage">1252</property>
+                    <property
+                      dataType="System.Boolean"
+                      description="Forces the use of the DefaultCodePage property value when describing character data."
+                      name="AlwaysUseDefaultCodePage">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the mode used to access the database."
+                      name="AccessMode"
+                      typeConverter="AccessMode">2</property>
+                    <property
+                      dataType="System.String"
+                      description="The mappings between the parameters in the SQL command and variables."
+                      name="ParameterMapping"></property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Connections[OleDbConnection]"
+                      connectionManagerID="{5CEE1F01-4F52-4DE3-8E2D-2797D8A18207}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[OLEDB UNStatistics Connect]"
+                      description="The OLE DB runtime connection used to access the database."
+                      name="OleDbConnection" />
+                  </connections>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Output]"
+                      name="OLE DB Source Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Output].Columns[Region]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Output].Columns[Region]"
+                          name="Region"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Output].Columns[SubRegion]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Output].ExternalColumns[SubRegion]"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Output].Columns[SubRegion]"
+                          name="SubRegion"
+                          truncationRowDisposition="FailComponent" />
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Output].Columns[Country]"
+                          dataType="wstr"
+                          errorOrTruncationOperation="Conversion"
+                          errorRowDisposition="FailComponent"
+                          externalMetadataColumnId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Output].ExternalColumns[Country]"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Output].Columns[Country]"
+                          name="Country"
+                          truncationRowDisposition="FailComponent" />
+                      </outputColumns>
+                      <externalMetadataColumns
+                        isUsed="True">
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Output].ExternalColumns[Region]"
+                          dataType="wstr"
+                          length="255"
+                          name="Region" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Output].ExternalColumns[SubRegion]"
+                          dataType="wstr"
+                          length="255"
+                          name="SubRegion" />
+                        <externalMetadataColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Output].ExternalColumns[Country]"
+                          dataType="wstr"
+                          length="255"
+                          name="Country" />
+                      </externalMetadataColumns>
+                    </output>
+                    <output
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Error Output]"
+                      isErrorOut="true"
+                      name="OLE DB Source Error Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Error Output].Columns[Region]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Error Output].Columns[Region]"
+                          name="Region" />
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Error Output].Columns[SubRegion]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Error Output].Columns[SubRegion]"
+                          name="SubRegion" />
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Error Output].Columns[Country]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Error Output].Columns[Country]"
+                          name="Country" />
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Error Output].Columns[ErrorCode]"
+                          name="ErrorCode"
+                          specialFlags="1" />
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          dataType="i4"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Error Output].Columns[ErrorColumn]"
+                          name="ErrorColumn"
+                          specialFlags="2" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\SC Historical Comparing"
+                  componentClassID="Microsoft.ManagedComponentHost"
+                  contactInfo="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum.;Microsoft Corporation; Microsoft SQL Server; Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;8"
+                  description="Includes and runs custom script code. For example, apply a business rule that limits the range of valid values in an &quot;income&quot; column or add values in two columns and calculate the average of the sum."
+                  name="SC Historical Comparing"
+                  version="9">
+                  <properties>
+                    <property
+                      dataType="System.String"
+                      description="Stores the source code of the component"
+                      isArray="true"
+                      name="SourceCode"
+                      state="cdata">
+                      <arrayElements
+                        arrayElementCount="30">
+                        <arrayElement
+                          dataType="System.String"><![CDATA[Properties\AssemblyInfo.cs]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[using System.Reflection;
+using System.Runtime.CompilerServices;
+
+//
+// General Information about an assembly is controlled through the following 
+// set of attributes. Change these attribute values to modify the information
+// associated with an assembly.
+//
+[assembly: AssemblyTitle("SC_2ef4a58c49eb4f13b9f8fe0a16a3cede")]
+[assembly: AssemblyDescription("")]
+[assembly: AssemblyConfiguration("")]
+[assembly: AssemblyCompany("EPAM Systems")]
+[assembly: AssemblyProduct("SC_2ef4a58c49eb4f13b9f8fe0a16a3cede")]
+[assembly: AssemblyCopyright("Copyright @ EPAM Systems 2014")]
+[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCulture("")]
+//
+// Version information for an assembly consists of the following four values:
+//
+//      Major Version
+//      Minor Version 
+//      Build Number
+//      Revision
+//
+// You can specify all the values or you can default the Revision and Build Numbers 
+// by using the '*' as shown below:
+
+[assembly: AssemblyVersion("1.0.*")]
+]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[Properties\Resources.resx]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+</root>]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[main.cs]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[/* Microsoft SQL Server Integration Services Script Component
+*  Write scripts using Microsoft Visual C# 2010.
+*  ScriptMain is the entry point class of the script.*/
+
+using System;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+using System.Data;
+using System.Reflection;
+using System.Collections;
+using System.Collections.Generic;
+using System.Text;
+//using Microsoft.VisualBasic;
+
+
+
+[Microsoft.SqlServer.Dts.Pipeline.SSISScriptComponentEntryPointAttribute]
+public class ScriptMain : UserComponent
+{
+    public class ColumnMappingInfo
+    {
+        protected PropertyInfo _IsNull;
+        protected PropertyInfo _Value;
+
+        public int ColumnID { get; set; }
+        public string ColumnName { get; set; }
+        public string ColumnDataType { get; set; }
+        public PropertyInfo IsNull { get { return _IsNull; } }
+        public PropertyInfo Value { get { return _Value; } }
+
+        public void Init()
+        {
+            Type rowType = typeof(Input0Buffer);
+
+            //************************ attention Replace("_","") is necessery//
+            string Property_Name = ColumnName.Replace("_", "");
+            string Property_IsNull = Property_Name + "_IsNull";
+
+            _IsNull = rowType.GetProperty(Property_IsNull);
+
+            if (_IsNull == null)
+                throw new ArgumentException("Reflection lookup for property name '" + Property_IsNull + "' yielded null");
+
+            _Value = rowType.GetProperty(Property_Name);
+
+            if (_Value == null)
+                throw new ArgumentException("Reflection lookup for property name '" + Property_Name + "' yielded null");
+        }
+    }
+
+    public class ColumnMapping
+    {
+        public ColumnMappingInfo ColumnDST { get; set; }
+        public ColumnMappingInfo ColumnSRC { get; set; }
+    }
+
+    Dictionary<string, ColumnMapping> Mapping = new Dictionary<string, ColumnMapping>(StringComparer.CurrentCultureIgnoreCase);
+    PipelineBuffer inpBuffer;
+
+    public override void PreExecute()
+    {
+        string columnName;
+        string SearchStringSrc = "SRC_";
+        string SearchStringDst = "DST_";
+        string columnKey;
+        int i = 0;
+        IDTSInput100 inp = this.ComponentMetaData.InputCollection[0];
+        foreach (IDTSInputColumn100 column in inp.InputColumnCollection)
+        {
+            ColumnMappingInfo ColDst = new ColumnMappingInfo();
+            ColumnMappingInfo ColSrc = new ColumnMappingInfo();
+            ColDst.ColumnID = -1;
+            ColDst.ColumnName = "";
+            ColDst.ColumnDataType = "";
+            ColSrc.ColumnID = -1;
+            ColSrc.ColumnName = "";
+            ColSrc.ColumnDataType = "";
+            columnKey = "";
+            columnName = column.Name;
+
+            if (columnName.ToUpper().Contains(SearchStringDst))
+            {
+                ColDst.ColumnID = i;//BufferManager.FindColumnByLineageID(inp.Buffer, column.LineageID);
+                ColDst.ColumnName = columnName;
+                ColDst.ColumnDataType = column.DataType.ToString();
+                columnKey = columnName.ToUpper().Replace(SearchStringDst, "");
+            }
+            else
+            {
+                if (columnName.ToUpper().Contains(SearchStringSrc))
+                {
+                    ColSrc.ColumnID = i;  //'BufferManager.FindColumnByLineageID(inp.Buffer, column.LineageID);
+                    ColSrc.ColumnName = columnName;
+                    ColSrc.ColumnDataType = column.DataType.ToString();
+                    columnKey = columnName.ToUpper().Replace(SearchStringSrc, "");
+                }
+            }
+
+            if ((columnName.ToUpper().Contains(SearchStringDst)) || (columnName.ToUpper().Contains(SearchStringSrc)))
+            {
+                if (Mapping.ContainsKey(columnKey))
+                {
+                    if (Mapping[columnKey].ColumnDST.ColumnID == -1)
+                    {
+                        Mapping[columnKey].ColumnDST = ColDst;
+                    }
+                    if (Mapping[columnKey].ColumnSRC.ColumnID == -1)
+                    {
+                        Mapping[columnKey].ColumnSRC = ColSrc;
+                    }
+                }
+                else
+                {
+                    ColumnMapping Cols = new ColumnMapping();
+                    Cols.ColumnDST = ColDst;
+                    Cols.ColumnSRC = ColSrc;
+                    Mapping.Add(columnKey, Cols);
+                }
+            }
+            i = i + 1;
+        }
+
+        foreach (ColumnMapping column in Mapping.Values)
+        {
+            if (column.ColumnDST.ColumnID == -1)
+            {
+                string errMsg = String.Format("Source column [{0}] is not mapped", column.ColumnSRC.ColumnName);
+                throw new ArgumentException(errMsg);
+            }
+
+            if (column.ColumnSRC.ColumnID == -1)
+            {
+                string errMsg = String.Format("Destination column [{0}] is not mapped", column.ColumnDST.ColumnName);
+                throw new ArgumentException(errMsg);
+            }
+
+            if ((column.ColumnDST.ColumnDataType) != (column.ColumnSRC.ColumnDataType))
+            {
+                string errMsg = String.Format("The DataType {0} of the column [{1}] is not matched the dataType {2} of the [{3}] column", column.ColumnDST.ColumnDataType, column.ColumnDST.ColumnName, column.ColumnSRC.ColumnDataType, column.ColumnSRC.ColumnName);
+                throw new ArgumentException(errMsg);
+
+            }
+            column.ColumnDST.Init();
+            column.ColumnSRC.Init();
+
+
+        }
+    }
+
+    public override void PostExecute()
+    {
+        base.PostExecute();
+        /*
+          Add your code here for postprocessing or remove if not needed
+          You can set read/write variables here, for example:
+          Variables.MyIntVar = 100
+        */
+    }
+
+    public override void ProcessInput(int InputID, PipelineBuffer Buffer)
+    {
+        inpBuffer = Buffer;
+        base.ProcessInput(InputID, Buffer);
+
+    }
+
+    protected string GetColumnValue(Input0Buffer Row, ColumnMappingInfo Col)
+    {
+        bool isNull = (bool)(Col.IsNull.GetValue(Row, null));
+
+        if (isNull)
+            return null;
+
+        object srcValue = Col.Value.GetValue(Row, null);
+
+        if (srcValue == null)
+            return null;
+
+        return srcValue.ToString();
+    }
+
+    public override void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+        //string Msg = "";
+        bool IsEqual = true;
+
+        foreach (ColumnMapping column in Mapping.Values)
+        {
+            //Msg = "";
+
+            string ColumSRCValue = GetColumnValue(Row, column.ColumnSRC);
+            //Msg = Msg + column.ColumnSRC.ColumnName + "=" + ColumSRCValue + " \n";
+
+            string ColumDSTValue = GetColumnValue(Row, column.ColumnDST);
+            //Msg = Msg + column.ColumnDST.ColumnName + "=" + ColumDSTValue + " \n";
+
+            if ((ColumDSTValue == null) && (ColumSRCValue == null))
+                continue;
+
+            if (
+                    (ColumDSTValue == null) || (ColumSRCValue == null)
+                        ||
+                    (!String.Equals(ColumDSTValue, ColumSRCValue, StringComparison.OrdinalIgnoreCase))
+               )
+            {
+                //System.Windows.Forms.MessageBox.Show("Message: " + Msg);
+                IsEqual = false;
+                //Row.Msg = Msg;
+                break;
+            }
+        }
+        Row.IsEqual = IsEqual;
+    }
+}
+]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[BufferWrapper.cs]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services buffer wrappers
+*  This module defines classes for accessing data flow buffers
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+
+public class Input0Buffer: ScriptBuffer
+
+{
+    public Input0Buffer(PipelineBuffer Buffer, int[] BufferColumnIndexes, OutputNameMap OutputMap)
+        : base(Buffer, BufferColumnIndexes, OutputMap)
+    {
+    }
+
+    public String SRCRegion
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[0]);
+        }
+    }
+    public bool SRCRegion_IsNull
+    {
+        get
+        {
+            return IsNull(0);
+        }
+    }
+
+    public String SRCSubRegion
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[1]);
+        }
+    }
+    public bool SRCSubRegion_IsNull
+    {
+        get
+        {
+            return IsNull(1);
+        }
+    }
+
+    public String DSTRegion
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[2]);
+        }
+    }
+    public bool DSTRegion_IsNull
+    {
+        get
+        {
+            return IsNull(2);
+        }
+    }
+
+    public String DSTSubRegion
+    {
+        get
+        {
+            return Buffer.GetString(BufferColumnIndexes[3]);
+        }
+    }
+    public bool DSTSubRegion_IsNull
+    {
+        get
+        {
+            return IsNull(3);
+        }
+    }
+
+    public Boolean IsEqual
+    {
+        set
+        {
+            this[4] = value;
+        }
+    }
+    public bool IsEqual_IsNull
+    {
+        set
+        {
+            if (value)
+            {
+                SetNull(4);
+            }
+            else
+            {
+                throw new InvalidOperationException("IsNull property cannot be set to False. Assign a value to the column instead.");
+            }
+        }
+    }
+
+    new public bool NextRow()
+    {
+        return base.NextRow();
+    }
+
+    new public bool EndOfRowset()
+    {
+        return base.EndOfRowset();
+    }
+
+}
+]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[ComponentWrapper.cs]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[/* THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT!
+*  Microsoft SQL Server Integration Services component wrapper
+*  This module defines the base class for your component
+*  THIS IS AUTO-GENERATED CODE THAT WILL BE OVERWRITTEN! DO NOT EDIT! */
+
+using System;
+using System.Data;
+using Microsoft.SqlServer.Dts.Pipeline;
+using Microsoft.SqlServer.Dts.Pipeline.Wrapper;
+using Microsoft.SqlServer.Dts.Runtime.Wrapper;
+
+public class UserComponent: ScriptComponent
+{
+    public Connections Connections;
+    public Variables Variables;
+    public UserComponent()
+    {
+        Connections = new Connections(this);
+        Variables = new Variables(this);
+    }
+
+    public override void ProcessInput(int InputID, string InputName, PipelineBuffer Buffer, OutputNameMap OutputMap)
+    {
+
+        if (InputName.Equals(@"Input 0", StringComparison.Ordinal))
+        {
+            Input0_ProcessInput(new Input0Buffer(Buffer, GetColumnIndexes(InputID), OutputMap));
+        }
+
+    }
+
+    public virtual void Input0_ProcessInput(Input0Buffer Buffer)
+    {
+        while (Buffer.NextRow())
+        {
+            Input0_ProcessInputRow(Buffer);
+        }
+    }
+
+    public virtual void Input0_ProcessInputRow(Input0Buffer Row)
+    {
+    }
+
+}
+
+public class Connections
+{
+    ScriptComponent ParentComponent;
+
+    public Connections(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+    public IDTSConnectionManager100 Connection
+    {
+        get
+        {
+            return ParentComponent.ComponentMetaData.RuntimeConnectionCollection.GetRuntimeConnectionByName(@"Connection").ConnectionManager;
+        }
+    }
+
+}
+
+public class Variables
+{
+    ScriptComponent ParentComponent;
+
+    public Variables(ScriptComponent Component)
+    {
+        ParentComponent = Component;
+    }
+
+}
+]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[SC_2ef4a58c49eb4f13b9f8fe0a16a3cede.csproj]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[<?xml version="1.0" encoding="utf-8"?><Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003"><PropertyGroup><ProjectTypeGuids>{30D016F9-3734-4E33-A861-5E7D899E18F3};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids><Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration><Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform><ProductVersion>8.0.30703</ProductVersion><SchemaVersion>2.0</SchemaVersion><ProjectGuid>{547A1E6F-5B63-4D4D-AC9D-EEB19F7BB8DE}</ProjectGuid><OutputType>Library</OutputType><AppDesignerFolder>Properties</AppDesignerFolder><RootNamespace>SC_2ef4a58c49eb4f13b9f8fe0a16a3cede</RootNamespace><AssemblyName>SC_D130681744CC45389A87A82F895DF42C</AssemblyName><TargetFrameworkVersion>v4.0</TargetFrameworkVersion><FileAlignment>512</FileAlignment></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Debug' "><DebugSymbols>true</DebugSymbols><DebugType>full</DebugType><Optimize>false</Optimize><OutputPath>.\bin\Debug\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineConstants>DEBUG;TRACE</DefineConstants><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><PropertyGroup Condition=" '$(Configuration)' == 'Release' "><DebugSymbols>false</DebugSymbols><Optimize>true</Optimize><OutputPath>.\bin\Release\</OutputPath><EnableUnmanagedDebugging>false</EnableUnmanagedDebugging><DefineConstants>TRACE</DefineConstants><ErrorReport>prompt</ErrorReport><WarningLevel>4</WarningLevel></PropertyGroup><ItemGroup><Reference Include="System" /><Reference Include="System.Data" /><Reference Include="System.Windows.Forms" /><Reference Include="System.Xml" /><Reference Include="Microsoft.SqlServer.TxScript, Version=12.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" /><Reference Include="Microsoft.SqlServer.DTSRuntimeWrap, Version=12.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" /><Reference Include="Microsoft.SqlServer.DTSPipelineWrap, Version=12.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" /><Reference Include="Microsoft.SqlServer.PipelineHost, Version=12.0.0.0, Culture=Neutral, PublicKeyToken=89845dcd8080cc91" /><Compile Include="main.cs" /><Compile Include="BufferWrapper.cs" /><Compile Include="ComponentWrapper.cs" /></ItemGroup><ItemGroup><AppDesigner Include="Properties\" /><Compile Include="Properties\AssemblyInfo.cs"><SubType>Code</SubType></Compile><EmbeddedResource Include="Properties\Resources.resx"><Generator>ResXFileCodeGenerator</Generator><LastGenOutput>Resources.Designer.cs</LastGenOutput></EmbeddedResource><Compile Include="Properties\Resources.Designer.cs"><AutoGen>True</AutoGen><DependentUpon>Resources.resx</DependentUpon></Compile><None Include="Properties\Settings.settings"><Generator>SettingsSingleFileGenerator</Generator><LastGenOutput>Settings.Designer.cs</LastGenOutput></None><Compile Include="Properties\Settings.Designer.cs"><AutoGen>True</AutoGen><DependentUpon>Settings.settings</DependentUpon></Compile></ItemGroup><!-- Include the build rules for a C# project.--><Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" /><!-- This section defines VSTA properties that describe the host-changable project properties. --><ProjectExtensions><VisualStudio><FlavorProperties GUID="{30D016F9-3734-4E33-A861-5E7D899E18F3}"><ProjectProperties HostName="VSTAHostName" HostPackage="{B3A685AA-7EAF-4BC6-9940-57959FA5AC07}" ApplicationType="usd" Language="cs" TemplatesPath="" DebugInfoExeName="devenv.exe" DebugInfoCommandLine="/vstaHostDebugUri:&quot;vstadebug13b2e892-f911-4d50-a556-14b5f4769f3a/13025ca9-679e-489e-a569-8ee923f7d2d1&quot;" /><Host Name="ScriptComponent" IconIndex="0" /><ProjectClient><HostIdentifier>SSIS_SC120</HostIdentifier></ProjectClient></FlavorProperties></VisualStudio></ProjectExtensions></Project>]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[Project]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[UTF16LE]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[<?xml version="1.0" encoding="UTF-16" standalone="yes"?>
+<c:Project xmlns:c="http://schemas.microsoft.com/codeprojectml/2010/08/main" xmlns:msb="http://schemas.microsoft.com/developer/msbuild/2003" runtimeVersion="3.0" schemaVersion="1.0">
+	<msb:PropertyGroup>
+		<msb:Language>msBuild</msb:Language>
+		<msb:CodeName>SC_2ef4a58c49eb4f13b9f8fe0a16a3cede</msb:CodeName>
+		<msb:DisplayName>SC_2ef4a58c49eb4f13b9f8fe0a16a3cede</msb:DisplayName>
+		<msb:ProjectId>{3308C483-683C-44B1-8D1D-AA8E42CF8343}</msb:ProjectId>
+	</msb:PropertyGroup>
+	<msb:ItemGroup>
+		<msb:Project Include="SC_2ef4a58c49eb4f13b9f8fe0a16a3cede.csproj"/>
+		<msb:File Include="Properties\Settings.Designer.cs"/>
+		<msb:File Include="BufferWrapper.cs"/>
+		<msb:File Include="main.cs"/>
+		<msb:File Include="Properties\Settings.settings"/>
+		<msb:File Include="Properties\AssemblyInfo.cs"/>
+		<msb:File Include="ComponentWrapper.cs"/>
+		<msb:File Include="Properties\Resources.resx"/>
+		<msb:File Include="Properties\Resources.Designer.cs"/>
+	</msb:ItemGroup>
+</c:Project>]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[Properties\Settings.Designer.cs]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_2ef4a58c49eb4f13b9f8fe0a16a3cede.Properties.Settings.get_Default():SC_2ef4a58c49eb4f13b9f8fe0a16a3cede.Properties.Sett" +
+    "ings")]
+
+namespace SC_2ef4a58c49eb4f13b9f8fe0a16a3cede.Properties {
+    
+    
+    internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
+        
+        [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
+        private static Settings defaultInstance = new Settings();
+        
+        public static Settings Default {
+            get {
+                return defaultInstance;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[Properties\Settings.settings]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[<?xml version='1.0' encoding='iso-8859-1'?>
+<SettingsFile xmlns="uri:settings" CurrentProfile="(Default)">
+  <Profiles>
+    <Profile Name="(Default)" />
+  </Profiles>
+  <Settings />
+</SettingsFile>]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[Properties\Resources.Designer.cs]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[UTF8]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[//------------------------------------------------------------------------------
+// <auto-generated>
+//     This code was generated by a tool.
+//
+//     Changes to this file may cause incorrect behavior and will be lost if
+//     the code is regenerated.
+// </auto-generated>
+//------------------------------------------------------------------------------
+
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_2ef4a58c49eb4f13b9f8fe0a16a3cede.Properties.Resources.get_ResourceManager():System.Resources.Resou" +
+    "rceManager")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_2ef4a58c49eb4f13b9f8fe0a16a3cede.Properties.Resources.get_Culture():System.Globalization.CultureIn" +
+    "fo")]
+[assembly: global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode", Scope="member", Target="SC_2ef4a58c49eb4f13b9f8fe0a16a3cede.Properties.Resources.set_Culture(System.Globalization.CultureInfo" +
+    "):Void")]
+
+namespace SC_2ef4a58c49eb4f13b9f8fe0a16a3cede.Properties {
+    
+    
+    /// <summary>
+    ///   A strongly-typed resource class, for looking up localized strings, etc.
+    /// </summary>
+    // This class was auto-generated by the StronglyTypedResourceBuilder
+    // class via a tool like ResGen or Visual Studio.
+    // To add or remove a member, edit your .ResX file then rerun ResGen
+    // with the /str option, or rebuild your VS project.
+    [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+    internal class Resources {
+        
+        private static global::System.Resources.ResourceManager resourceMan;
+        
+        private static global::System.Globalization.CultureInfo resourceCulture;
+        
+        [global::System.Diagnostics.CodeAnalysis.SuppressMessageAttribute("Microsoft.Performance", "CA1811:AvoidUncalledPrivateCode")]
+        internal Resources() {
+        }
+        
+        /// <summary>
+        ///   Returns the cached ResourceManager instance used by this class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Resources.ResourceManager ResourceManager {
+            get {
+                if ((resourceMan == null)) {
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SC_2ef4a58c49eb4f13b9f8fe0a16a3cede.Properties.Resources", typeof(Resources).Assembly);
+                    resourceMan = temp;
+                }
+                return resourceMan;
+            }
+        }
+        
+        /// <summary>
+        ///   Overrides the current thread's CurrentUICulture property for all
+        ///   resource lookups using this strongly typed resource class.
+        /// </summary>
+        [global::System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        internal static global::System.Globalization.CultureInfo Culture {
+            get {
+                return resourceCulture;
+            }
+            set {
+                resourceCulture = value;
+            }
+        }
+    }
+}
+]]></arrayElement>
+                      </arrayElements>
+                    </property>
+                    <property
+                      dataType="System.String"
+                      description="Stores the binary representation of the component"
+                      isArray="true"
+                      name="BinaryCode"
+                      state="cdata">
+                      <arrayElements
+                        arrayElementCount="2">
+                        <arrayElement
+                          dataType="System.String"><![CDATA[SC_D130681744CC45389A87A82F895DF42C.dll]]></arrayElement>
+                        <arrayElement
+                          dataType="System.String"><![CDATA[TVqQAAMAAAAEAAAA//8AALgAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAgAAAAA4fug4AtAnNIbgBTM0hVGhpcyBwcm9ncmFtIGNhbm5vdCBiZSBydW4gaW4gRE9TIG1v
+ZGUuDQ0KJAAAAAAAAABQRQAATAEDAMyXn1gAAAAAAAAAAOAAIiALATAAACYAAAAIAAAAAAAA8kQA
+AAAgAAAAYAAAAAAAEAAgAAAAAgAABAAAAAAAAAAEAAAAAAAAAACgAAAAAgAAAAAAAAMAQIUAABAA
+ABAAAAAAEAAAEAAAAAAAABAAAAAAAAAAAAAAAKBEAABPAAAAAGAAAJwEAAAAAAAAAAAAAAAAAAAA
+AAAAAIAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAIAAACAAAAAAAAAAAAAAACCAAAEgAAAAAAAAAAAAAAC50ZXh0AAAA+CQAAAAgAAAAJgAAAAIA
+AAAAAAAAAAAAAAAAACAAAGAucnNyYwAAAJwEAAAAYAAAAAYAAAAoAAAAAAAAAAAAAAAAAABAAABA
+LnJlbG9jAAAMAAAAAIAAAAACAAAALgAAAAAAAAAAAAAAAAAAQAAAQgAAAAAAAAAAAAAAAAAAAADU
+RAAAAAAAAEgAAAACAAUAfCcAAGwcAAABAAAAAAAAAOhDAAC4AAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAABswBQAxAwAAAQAAEXIBAABwC3ILAABwDBYTBAIoEAAACm8R
+AAAKFowmAAABbxIAAApvEwAACm8UAAAKEwU4vAEAABEFbxUAAAp0EQAAARMGcysAAAYTB3MrAAAG
+EwgRBxVvIwAABhEHchUAAHBvJQAABhEHchUAAHBvJwAABhEIFW8jAAAGEQhyFQAAcG8lAAAGEQhy
+FQAAcG8nAAAGchUAAHANEQZvFgAACgoGbxcAAAoIbxgAAAosQhEHEQRvIwAABhEHBm8lAAAGEQcR
+Bm8ZAAAKEwkSCf4WEgAAAW8aAAAKbycAAAYGbxcAAAoIchUAAHBvGwAACg0rTgZvFwAACgdvGAAA
+CixAEQgRBG8jAAAGEQgGbyUAAAYRCBEGbxkAAAoTCRIJ/hYSAAABbxoAAApvJwAABgZvFwAACgdy
+FQAAcG8bAAAKDQZvFwAACghvGAAACi0RBm8XAAAKB28YAAAKOY8AAAACewEAAAQJbxwAAAosWgJ7
+AQAABAlvHQAACm8sAAAGbyIAAAYVMxMCewEAAAQJbx0AAAoRB28tAAAGAnsBAAAECW8dAAAKby4A
+AAZvIgAABhUzPAJ7AQAABAlvHQAAChEIby8AAAYrJ3MwAAAGEwoRChEHby0AAAYRChEIby8AAAYC
+ewEAAAQJEQpvHgAAChEEF1gTBBEFbx8AAAo6OP7//94VEQV1EwAAARMLEQssBxELbyAAAArcAnsB
+AAAEbyEAAApvIgAAChMMOOgAAAASDCgjAAAKEw0RDW8sAAAGbyIAAAYVMxxyFwAAcBENby4AAAZv
+JAAABigkAAAKcyUAAAp6EQ1vLgAABm8iAAAGFTMcclsAAHARDW8sAAAGbyQAAAYoJAAACnMlAAAK
+ehENbywAAAZvJgAABhENby4AAAZvJgAABigmAAAKLFJyqQAAcBqNFgAAASUWEQ1vLAAABm8mAAAG
+oiUXEQ1vLAAABm8kAAAGoiUYEQ1vLgAABm8mAAAGoiUZEQ1vLgAABm8kAAAGoignAAAKcyUAAAp6
+EQ1vLAAABm8qAAAGEQ1vLgAABm8qAAAGEgwoKAAACjoM////3g4SDP4WAwAAG28gAAAK3CoAAABB
+NAAAAgAAADEAAADPAQAAAAIAABUAAAAAAAAAAgAAACcCAAD7AAAAIgMAAA4AAAAAAAAAHgIoKQAA
+CipCAgR9AgAABAIDBCgqAAAKKgAAABMwAwAwAAAAAgAAEQRvKAAABgMUbysAAAqlKwAAASwCFCoE
+bykAAAYDFG8rAAAKCgYtAhQqBm8aAAAKKhswAwB4AAAAAwAAERcKAnsBAAAEbyEAAApvIgAACgsr
+QhIBKCMAAAoMAgMIby4AAAYoBAAABg0CAwhvLAAABigEAAAGEwQRBC0DCSwWEQQsDgksCxEECRso
+LAAACi0EFgreGRIBKCgAAAottd4OEgH+FgMAABtvIAAACtwDBm8QAAAGKgEQAAACABMAT2IADgAA
+AABeAigtAAAKcy4AAAp9AQAABAIoFAAABioqAgMEBSgvAAAKKlICezAAAAoCezEAAAoWlG8yAAAK
+KiICFigzAAAKKlICezAAAAoCezEAAAoXlG8yAAAKKiICFygzAAAKKlICezAAAAoCezEAAAoYlG8y
+AAAKKiICGCgzAAAKKlICezAAAAoCezEAAAoZlG8yAAAKKiICGSgzAAAKKjoCGgOMKwAAASg0AAAK
+KloDLAgCGig1AAAKKnJcAQBwczYAAAp6HgIoNwAACioeAig4AAAKKn4CKDkAAAoCAnMYAAAGfQMA
+AAQCAnMaAAAGfQQAAAQqkgRy+QEAcBpvOgAACiwVAgUCAyg7AAAKDgRzBwAABm8WAAAGKkorBwID
+bxcAAAYDbxIAAAYt8SoGKjoCKDwAAAoCA30FAAAEKoICewUAAARvEAAACm89AAAKcgkCAHBvPgAA
+Cm8/AAAKKjoCKDwAAAoCA30GAAAEKh4CKDwAAAoqrn4HAAAELR5yHwIAcNAHAAACKEAAAApvQQAA
+CnNCAAAKgAcAAAR+BwAABCoafggAAAQqHgKACAAABCoafgkAAAQqHgIoQwAACioucyAAAAaACQAA
+BCoeAnsMAAAEKiICA30MAAAEKh4Cew0AAAQqIgIDfQ0AAAQqHgJ7DgAABCoiAgN9DgAABCoeAnsK
+AAAEKh4CewsAAAQqABMwAwCQAAAABAAAEdADAAACKEAAAAoKAigkAAAGcpECAHByFQAAcG8bAAAK
+CwdylQIAcChEAAAKDAIGCG9FAAAKfQoAAAQCewoAAAQUKEYAAAosFnKlAgBwCHLxAgBwKEcAAApz
+JQAACnoCBgdvRQAACn0LAAAEAnsLAAAEFChGAAAKLBZypQIAcAdy8QIAcChHAAAKcyUAAAp6Kh4C
+ew8AAAQqIgIDfQ8AAAQqHgJ7EAAABCoiAgN9EAAABCoAAEJTSkIBAAEAAAAAAAwAAAB2NC4wLjMw
+MzE5AAAAAAUAbAAAAAQKAAAjfgAAcAoAALQLAAAjU3RyaW5ncwAAAAAkFgAAEAMAACNVUwA0GQAA
+EAAAACNHVUlEAAAARBkAACgDAAAjQmxvYgAAAAAAAAACAAABVxWiCQkDAAAA+gEzABYAAAEAAAAz
+AAAACgAAABAAAAAwAAAAGAAAAEcAAAAfAAAABAAAAAYAAAAVAAAAGwAAAAMAAAABAAAABgAAAAEA
+AAACAAAAAADXBQEAAAAAAAYAiQRoCQYAHQVoCQYA1QNVCQ8A3AkAAAYAAgQjBwYAbAQjBwYATQQj
+BwYABAUjBwYAqQQjBwYAwgQjBwYAGQQjBwYANAR6BQoA3QTPAgYA3QCQAQ4AdgjPAgYALgltChIA
+GgD2CBYAGgPOCAYAUwKVBjsANQcAAFMAPQkAAAYAmgqVBgYA/QcjBwYAnQNoCQYAHgOVBgoAjwjP
+AgoACgjPAgoA3ArPAhYAnQDOCAYAuANVCQYAoAiICQYA3wcOBxoAiAPBBRoA6QPBBRoASwP5BhIA
+AQD2CBIAbQD2CAYA1wCVBhIAtgD2CBIALQD2CAYArgWVBgYAvAeVBgYAqAaVBgYAzgeVBgYAHwmV
+BgYAwwCQAQYAogeVBhIASgD2CBIAhAD2CAYAXwKVBgYAggsjBwAAAADqAAAAAAABAAEAAQAQALAG
+AAAQAAEAAQABABAAaQgAAGkAAwAHAAEAEAC+CgAAcQADABQAAQAQAIAKAABZAAUAGAABABAAGgoA
+AFkABgAaAAAAEACPCesJWQAHABsAAAEQAFQK6wmNAAkAHwACABAA6wcAAFkACgAiAAIAEACUBQAA
+WQAPACwAAQCaBZcBAQCFCBUBBgCACqABBgAaCqQBAQDMCqgBAQDMCqgBEQCcBqwBEQA7A7ABEQBD
+ArUBBABvBrkBBABVBbkBAQDKAb0BAQD/AcABAQAbAsABAQDkAcMBAQCvAcMBUCAAAAAAxgA7BQYA
+AQDEIwAAAADGAEYFBgABAMwjAAAAAMYAPQvQAAEA4CMAAAAAhABcBccBAwAcJAAAAADGAFMLzwEF
+ALAkAAAAAIYYSAkGAAYAyCQAAAAAhhhICQsBBgDTJAAAAACGCLsGXQAJAOgkAAAAAIYIEgaOAAkA
+8SQAAAAAhgjXBl0ACQAGJQAAAACGCDwGjgAJAA8lAAAAAIYIyQZdAAkAJCUAAAAAhggnBo4ACQAt
+JQAAAACGCOgGXQAJAEIlAAAAAIYIVAaOAAkASyUAAAAAhgi1BdUBCQBaJQAAAACGCP8F1QEKAHEl
+AAAAAIYAaguOAAsAeSUAAAAAhgChCo4ACwCBJQAAAACGGEgJBgALAKElAAAAAMYAPQvaAQsAxiUA
+AAAAxgE2C88BDwDZJQAAAADGAVMLzwEQANslAAAAAIYYSAnkAREA6iUAAAAAhgiTB0gBEgALJgAA
+AACGGEgJ5AESABomAAAAAIMYSAkGABMAIiYAAAAAkwicCOoBEwBOJgAAAACTCCMD7wETAFUmAAAA
+AJMILwP1ARMAXSYAAAAAlgiyCvwBFABkJgAAAACGGEgJBgAUAGwmAAAAAJEYTgkBAhQAeCYAAAAA
+hggzAQUCFACAJgAAAACGCEABAQAUAIkmAAAAAIYIjAJdABUAkSYAAAAAhgibAhAAFQCaJgAAAACG
+CP0CXQAWAKImAAAAAIYIEAMQABYAqyYAAAAAhghsBgkCFwCzJgAAAACGCFIFCQIXALwmAAAAAIYA
+rQoGABcAGiYAAAAAhhhICQYAFwBYJwAAAACGCFUBDgIXAGAnAAAAAIYIYwETAhcAaScAAAAAhggX
+AQ4CGABxJwAAAACGCCUBEwIYABomAAAAAIYYSAkGABkAAAABAE0BAAACAJUIAAABAG4LAAACAH8G
+AAABAG4LAAABAJUIAAACAC8KAAADABgIAAABAHQFAAABAHQFAAABAE0BAAACAKoCAAADAJUIAAAE
+ABgIAAABAJUIAAABAG4LAAABAOIKAAABAOIKAAABAHQFAAABAHQFAAABAHQFAAABAHQFAAABAHQF
+AAABAHQFCQBICQEAEQBICQYAGQBICQoAKQBICRAAMQBICRAAOQBICRAAQQBICRAASQBICRAAUQBI
+CRAAWQBICRAAYQBICRAAaQBICQYAwQBICQYA8QBICQYAEQFICRUA4QBxATsAIQF/B0EAKQGDBkcA
+OQFFB04AQQE6CVQAgQDsClkAiQCDAl0ASQHGCF0ASQFkCmEAiQDwAmYAsQCiBV0ASQE7AmsADABy
+C3kADACDBn8ADACrAYYAgQBKC44AmQCAAwYADAAkCpIAFAA6CaUAHADsCrgASQGTCr0AUQFICRAA
+SQGXC8MASQGTCskAHABKC44A4QBGBQYA4QA9C9AAuQBrBdsASQFdCvEAaQFjA/oADABICQAB0QBI
+CQsB0QCVCBUB0QAvChkBeQCrBR0B0QBwBiIB0QCMBicB0QB3BgEAeQFICRAA0QBqC44A0QChCo4A
+4QBICQYASQFdCi0B4QBDCjUBsQBICQYAIQFfBzsBgQG0AkEBiQGwCEgByQBxAk0ByQB+C1UB+QBI
+CVsBGQFICQYASQGMCmoByQClC3ABuQCLC3YBSQGMCn4BLgALAEQCLgATAE0CLgAbAGwCLgAjAHUC
+LgArAJ4CLgAzAJ4CLgA7AKQCLgBDAHUCLgBLALYCLgBTAJ4CLgBbANkCQwBjACED4wBzACEDIQFr
+ACEDgQFrACEDiQF7AGwCoQFrACEDqQF7AGwCwQFrACED4QFrACEDAQJrACEDQARrACEDYARrACED
+gARrACEDoARrACEDwARrACED4ARrACEDgAVrACEDoAVrACEDwAVrACED4AVrACEDHADXAOIAYwED
+AAEABQALAAcADAAIAA4ACQAPAAoAFAAAAL8GGQIAABYGHQIAANsGGQIAAEAGHQIAAM0GGQIAACsG
+HQIAAOwGGQIAAFgGHQIAALkFHQIAAAMGHQIAAJcHIQIAAKAIJgIAAEMDKwIAALYKMQIAAEQBNgIA
+AJ8CGQIAABQDGQIAAHAGOgIAAG4FOgIAAGcBPwIAACkBPwICAAgAAwACAAkABQACAAoABwACAAsA
+CQACAAwACwACAA0ADQACAA4ADwACAA8AEQABABAAEwABABEAFQACABkAFwACABwAGQACAB0AGwAB
+AB4AGwACAB8AHQACACIAHwABACMAHwACACQAIQABACUAIQACACYAIwABACcAIwACACgAJQACACkA
+JwACACwAKQABAC0AKQACAC4AKwABAC8AKwBxAJ0AsAAEgAAAAQAAAGwYRhUAAAAAAADzAAAABAAA
+AAAAAAAAAAAAhQGHAQAAAAAMAAAAAAAAAAAAAACOAfgKAAAAAAwAAAAAAAAAAAAAAI4BFQsAAAAA
+DAAAAAAAAAAAAAAAjgFFCAAAAAAMAAAAAAAAAAAAAACOASIIAAAAAAQAAAAAAAAAAAAAAIUBlQYA
+AAAAAAAAAAEAAACZCQAACQACAAoAAgAAAAAAAElEVFNDb21wb25lbnRNZXRhRGF0YTEwMABJRFRT
+SW5wdXRDb2x1bW4xMDAASURUU0lucHV0Q29sdW1uQ29sbGVjdGlvbjEwMABJRFRTUnVudGltZUNv
+bm5lY3Rpb25Db2xsZWN0aW9uMTAwAElEVFNJbnB1dENvbGxlY3Rpb24xMDAASURUU1J1bnRpbWVD
+b25uZWN0aW9uMTAwAElEVFNDb25uZWN0aW9uTWFuYWdlcjEwMABJRFRTSW5wdXQxMDAASUVxdWFs
+aXR5Q29tcGFyZXJgMQBJbnQzMgBEaWN0aW9uYXJ5YDIAPE1vZHVsZT4AU0NfRDEzMDY4MTc0NEND
+NDUzODlBODdBODJGODk1REY0MkMAZ2V0X0NvbHVtblNSQwBzZXRfQ29sdW1uU1JDAGdldF9Db2x1
+bW5JRABzZXRfQ29sdW1uSUQASW5wdXRJRABnZXRfQ29sdW1uRFNUAHNldF9Db2x1bW5EU1QAZ2V0
+X0NvbXBvbmVudE1ldGFEYXRhAG1zY29ybGliAFN5c3RlbS5Db2xsZWN0aW9ucy5HZW5lcmljAEFk
+ZAA8Q29sdW1uU1JDPmtfX0JhY2tpbmdGaWVsZAA8Q29sdW1uSUQ+a19fQmFja2luZ0ZpZWxkADxD
+b2x1bW5EU1Q+a19fQmFja2luZ0ZpZWxkADxDb2x1bW5OYW1lPmtfX0JhY2tpbmdGaWVsZAA8Q29s
+dW1uRGF0YVR5cGU+a19fQmFja2luZ0ZpZWxkAFJlcGxhY2UAZGVmYXVsdEluc3RhbmNlAElEaXNw
+b3NhYmxlAFJ1bnRpbWVUeXBlSGFuZGxlAEdldFR5cGVGcm9tSGFuZGxlAGdldF9OYW1lAGdldF9D
+b2x1bW5OYW1lAHNldF9Db2x1bW5OYW1lAElucHV0TmFtZQBHZXRSdW50aW1lQ29ubmVjdGlvbkJ5
+TmFtZQBNaWNyb3NvZnQuU3FsU2VydmVyLkR0cy5QaXBlbGluZQBnZXRfRGF0YVR5cGUAZ2V0X0Nv
+bHVtbkRhdGFUeXBlAHNldF9Db2x1bW5EYXRhVHlwZQBnZXRfQ3VsdHVyZQBzZXRfQ3VsdHVyZQBy
+ZXNvdXJjZUN1bHR1cmUAQXBwbGljYXRpb25TZXR0aW5nc0Jhc2UAZ2V0X0N1cnJlbnRDdWx0dXJl
+SWdub3JlQ2FzZQBEaXNwb3NlAEVkaXRvckJyb3dzYWJsZVN0YXRlAENvbXBpbGVyR2VuZXJhdGVk
+QXR0cmlidXRlAERlYnVnZ2VyTm9uVXNlckNvZGVBdHRyaWJ1dGUARGVidWdnYWJsZUF0dHJpYnV0
+ZQBFZGl0b3JCcm93c2FibGVBdHRyaWJ1dGUAQXNzZW1ibHlUaXRsZUF0dHJpYnV0ZQBBc3NlbWJs
+eVRyYWRlbWFya0F0dHJpYnV0ZQBUYXJnZXRGcmFtZXdvcmtBdHRyaWJ1dGUAQXNzZW1ibHlDb25m
+aWd1cmF0aW9uQXR0cmlidXRlAEFzc2VtYmx5RGVzY3JpcHRpb25BdHRyaWJ1dGUAQ29tcGlsYXRp
+b25SZWxheGF0aW9uc0F0dHJpYnV0ZQBBc3NlbWJseVByb2R1Y3RBdHRyaWJ1dGUAQXNzZW1ibHlD
+b3B5cmlnaHRBdHRyaWJ1dGUAU1NJU1NjcmlwdENvbXBvbmVudEVudHJ5UG9pbnRBdHRyaWJ1dGUA
+QXNzZW1ibHlDb21wYW55QXR0cmlidXRlAFJ1bnRpbWVDb21wYXRpYmlsaXR5QXR0cmlidXRlAFBy
+ZUV4ZWN1dGUAUG9zdEV4ZWN1dGUAZ2V0X1ZhbHVlAEdldENvbHVtblZhbHVlAEdldFZhbHVlAHZh
+bHVlAFN5c3RlbS5SdW50aW1lLlZlcnNpb25pbmcAQ29sdW1uTWFwcGluZwBUb1N0cmluZwBHZXRT
+dHJpbmcAc2V0X0lzRXF1YWwAU3lzdGVtLkNvbXBvbmVudE1vZGVsAFNDX0QxMzA2ODE3NDRDQzQ1
+Mzg5QTg3QTgyRjg5NURGNDJDLmRsbABzZXRfSXNFcXVhbF9Jc051bGwAZ2V0X1NSQ1JlZ2lvbl9J
+c051bGwAZ2V0X0RTVFJlZ2lvbl9Jc051bGwAZ2V0X1NSQ1N1YlJlZ2lvbl9Jc051bGwAZ2V0X0RT
+VFN1YlJlZ2lvbl9Jc051bGwAZ2V0X0lzTnVsbABTZXROdWxsAENvbABnZXRfSXRlbQBzZXRfSXRl
+bQBTeXN0ZW0AcmVzb3VyY2VNYW4AQm9vbGVhbgBTY3JpcHRNYWluAGdldF9TUkNSZWdpb24AZ2V0
+X0RTVFJlZ2lvbgBnZXRfU1JDU3ViUmVnaW9uAGdldF9EU1RTdWJSZWdpb24AU3lzdGVtLkNvbmZp
+Z3VyYXRpb24AU3lzdGVtLkdsb2JhbGl6YXRpb24AU3lzdGVtLlJlZmxlY3Rpb24AVmFsdWVDb2xs
+ZWN0aW9uAGdldF9JbnB1dENvbHVtbkNvbGxlY3Rpb24AZ2V0X1J1bnRpbWVDb25uZWN0aW9uQ29s
+bGVjdGlvbgBnZXRfSW5wdXRDb2xsZWN0aW9uAGdldF9Db25uZWN0aW9uAEludmFsaWRPcGVyYXRp
+b25FeGNlcHRpb24AQXJndW1lbnRFeGNlcHRpb24AU3RyaW5nQ29tcGFyaXNvbgBDdWx0dXJlSW5m
+bwBDb2x1bW5NYXBwaW5nSW5mbwBQcm9wZXJ0eUluZm8AT3V0cHV0TmFtZU1hcABPdXRwdXRNYXAA
+TWljcm9zb2Z0LlNxbFNlcnZlci5EVFNSdW50aW1lV3JhcABNaWNyb3NvZnQuU3FsU2VydmVyLkRU
+U1BpcGVsaW5lV3JhcABJbnB1dDBCdWZmZXIAUGlwZWxpbmVCdWZmZXIAaW5wQnVmZmVyAFNjcmlw
+dEJ1ZmZlcgBnZXRfUmVzb3VyY2VNYW5hZ2VyAGdldF9Db25uZWN0aW9uTWFuYWdlcgBUb1VwcGVy
+AE1pY3Jvc29mdC5TcWxTZXJ2ZXIuRHRzLlJ1bnRpbWUuV3JhcHBlcgBNaWNyb3NvZnQuU3FsU2Vy
+dmVyLkR0cy5QaXBlbGluZS5XcmFwcGVyAFN0cmluZ0NvbXBhcmVyAElFbnVtZXJhdG9yAEdldEVu
+dW1lcmF0b3IALmN0b3IALmNjdG9yAFN5c3RlbS5EaWFnbm9zdGljcwBTeXN0ZW0uUnVudGltZS5D
+b21waWxlclNlcnZpY2VzAFN5c3RlbS5SZXNvdXJjZXMAU0NfMmVmNGE1OGM0OWViNGYxM2I5Zjhm
+ZTBhMTZhM2NlZGUuUHJvcGVydGllcy5SZXNvdXJjZXMucmVzb3VyY2VzAERlYnVnZ2luZ01vZGVz
+AFNDXzJlZjRhNThjNDllYjRmMTNiOWY4ZmUwYTE2YTNjZWRlLlByb3BlcnRpZXMAVmFyaWFibGVz
+AGdldF9WYWx1ZXMAQnVmZmVyQ29sdW1uSW5kZXhlcwBHZXRDb2x1bW5JbmRleGVzAFNldHRpbmdz
+AEVxdWFscwBDb250YWlucwBTeXN0ZW0uQ29sbGVjdGlvbnMAQ29ubmVjdGlvbnMAQ29uY2F0AEZv
+cm1hdABPYmplY3QARW5kT2ZSb3dzZXQASW5pdABnZXRfRGVmYXVsdABVc2VyQ29tcG9uZW50AFBh
+cmVudENvbXBvbmVudABTY3JpcHRDb21wb25lbnQAZ2V0X0N1cnJlbnQATWljcm9zb2Z0LlNxbFNl
+cnZlci5UeFNjcmlwdABNaWNyb3NvZnQuU3FsU2VydmVyLlBpcGVsaW5lSG9zdABJbnB1dDBfUHJv
+Y2Vzc0lucHV0AE1vdmVOZXh0AElucHV0MF9Qcm9jZXNzSW5wdXRSb3cATmV4dFJvdwBDb250YWlu
+c0tleQBnZXRfQXNzZW1ibHkAb3BfRXF1YWxpdHkAb3BfSW5lcXVhbGl0eQBHZXRQcm9wZXJ0eQAA
+AAAACVMAUgBDAF8AAAlEAFMAVABfAAABAENTAG8AdQByAGMAZQAgAGMAbwBsAHUAbQBuACAAWwB7
+ADAAfQBdACAAaQBzACAAbgBvAHQAIABtAGEAcABwAGUAZAAATUQAZQBzAHQAaQBuAGEAdABpAG8A
+bgAgAGMAbwBsAHUAbQBuACAAWwB7ADAAfQBdACAAaQBzACAAbgBvAHQAIABtAGEAcABwAGUAZAAA
+gLFUAGgAZQAgAEQAYQB0AGEAVAB5AHAAZQAgAHsAMAB9ACAAbwBmACAAdABoAGUAIABjAG8AbAB1
+AG0AbgAgAFsAewAxAH0AXQAgAGkAcwAgAG4AbwB0ACAAbQBhAHQAYwBoAGUAZAAgAHQAaABlACAA
+ZABhAHQAYQBUAHkAcABlACAAewAyAH0AIABvAGYAIAB0AGgAZQAgAFsAewAzAH0AXQAgAGMAbwBs
+AHUAbQBuAACAm0kAcwBOAHUAbABsACAAcAByAG8AcABlAHIAdAB5ACAAYwBhAG4AbgBvAHQAIABi
+AGUAIABzAGUAdAAgAHQAbwAgAEYAYQBsAHMAZQAuACAAQQBzAHMAaQBnAG4AIABhACAAdgBhAGwA
+dQBlACAAdABvACAAdABoAGUAIABjAG8AbAB1AG0AbgAgAGkAbgBzAHQAZQBhAGQALgAAD0kAbgBw
+AHUAdAAgADAAABVDAG8AbgBuAGUAYwB0AGkAbwBuAABxUwBDAF8AMgBlAGYANABhADUAOABjADQA
+OQBlAGIANABmADEAMwBiADkAZgA4AGYAZQAwAGEAMQA2AGEAMwBjAGUAZABlAC4AUAByAG8AcABl
+AHIAdABpAGUAcwAuAFIAZQBzAG8AdQByAGMAZQBzAAADXwAAD18ASQBzAE4AdQBsAGwAAEtSAGUA
+ZgBsAGUAYwB0AGkAbwBuACAAbABvAG8AawB1AHAAIABmAG8AcgAgAHAAcgBvAHAAZQByAHQAeQAg
+AG4AYQBtAGUAIAAnAAEdJwAgAHkAaQBlAGwAZABlAGQAIABuAHUAbABsAAEAdjW3utAzoE2Iz/nx
+1lO64AAEIAEBCAMgAAEFIAEBEREEIAEBDgYgAQERgIUeBw4ODg4OCBJBEkUSJBIkEUkSKBJNFRFV
+Ag4SKBIoBSAAEoCRBSAAEoCVBiABEoCdHAUgABKAoQQgABJBAyAAHAMgAA4EIAECDgQgABFJBSAC
+Dg4OBxUSOQIOEigFIAECEwAGIAETARMAByACARMAEwEDIAACCiAAFRJRAhMAEwEHFRJRAg4SKAog
+ABURVQITABMBBxURVQIOEigEIAATAQUAAg4OHAUAAgIODgYAAg4OHRwGIAIBCBI9AwcBHAYgAhwc
+HRwOBwUCFRFVAg4SKBIoDg4IAAMCDg4RgLEFAAASgLUKIAEBFRKAuQETAAkgAwESPR0IEm0DBhI9
+AwYdCAQgAQ4IBCABAggFIAIBCBwHIAICDhGAsQUgAR0ICAUgABKAwQYgARKAxQ4EIAASdQcAARJl
+EYDJBSAAEoDNByACAQ4SgM0GBwMSZQ4OBQACDg4OBSABEl0OBwACAhJdEl0GAAMODg4OCLd6XFYZ
+NOCJCImEXc2AgMyRCAYVEjkCDhIoAwYSFAMGEhgDBhJxAwYSfQQGEoCBAwYSIAMGEl0CBggCBg4D
+BhIkByACDhIMEiQFIAEBEgwEIAEBAgkgBAEIDhI9Em0FIAEBEnEEAAASfQUAABKAgQYAAQESgIEE
+AAASIAMAAAEDIAAIBCAAEl0EIAASJAUgAQESJAMoAA4DKAACBCgAEnUECAASfQUIABKAgQQIABIg
+AygACAQoABJdBCgAEiQIAQAIAAAAAAAeAQABAFQCFldyYXBOb25FeGNlcHRpb25UaHJvd3MBCAEA
+AgAAAAAAKAEAI1NDXzJlZjRhNThjNDllYjRmMTNiOWY4ZmUwYTE2YTNjZWRlAAAFAQAAAAARAQAM
+RVBBTSBTeXN0ZW1zAAAiAQAdQ29weXJpZ2h0IEAgRVBBTSBTeXN0ZW1zIDIwMTQAAEcBABouTkVU
+RnJhbWV3b3JrLFZlcnNpb249djQuMAEAVA4URnJhbWV3b3JrRGlzcGxheU5hbWUQLk5FVCBGcmFt
+ZXdvcmsgNAQBAAAAAAC0AAAAzsrvvgEAAACRAAAAbFN5c3RlbS5SZXNvdXJjZXMuUmVzb3VyY2VS
+ZWFkZXIsIG1zY29ybGliLCBWZXJzaW9uPTQuMC4wLjAsIEN1bHR1cmU9bmV1dHJhbCwgUHVibGlj
+S2V5VG9rZW49Yjc3YTVjNTYxOTM0ZTA4OSNTeXN0ZW0uUmVzb3VyY2VzLlJ1bnRpbWVSZXNvdXJj
+ZVNldAIAAAAAAAAAAAAAAFBBRFBBRFC0AAAAyEQAAAAAAAAAAAAA4kQAAAAgAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAANREAAAAAAAAAAAAAAAAX0NvckRsbE1haW4AbXNjb3JlZS5kbGwAAAAAAP8lACAA
+EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAQAAAA
+GAAAgAAAAAAAAAAAAAAAAAAAAQABAAAAMAAAgAAAAAAAAAAAAAAAAAAAAQAAAAAASAAAAFhgAABA
+BAAAAAAAAAAAAABABDQAAABWAFMAXwBWAEUAUgBTAEkATwBOAF8ASQBOAEYATwAAAAAAvQTv/gAA
+AQAAAAEARhVsGAAAAQBGFWwYPwAAAAAAAAAEAAAAAgAAAAAAAAAAAAAAAAAAAEQAAAABAFYAYQBy
+AEYAaQBsAGUASQBuAGYAbwAAAAAAJAAEAAAAVAByAGEAbgBzAGwAYQB0AGkAbwBuAAAAAAAAALAE
+oAMAAAEAUwB0AHIAaQBuAGcARgBpAGwAZQBJAG4AZgBvAAAAfAMAAAEAMAAwADAAMAAwADQAYgAw
+AAAAGgABAAEAQwBvAG0AbQBlAG4AdABzAAAAAAAAADoADQABAEMAbwBtAHAAYQBuAHkATgBhAG0A
+ZQAAAAAARQBQAEEATQAgAFMAeQBzAHQAZQBtAHMAAAAAAHAAJAABAEYAaQBsAGUARABlAHMAYwBy
+AGkAcAB0AGkAbwBuAAAAAABTAEMAXwAyAGUAZgA0AGEANQA4AGMANAA5AGUAYgA0AGYAMQAzAGIA
+OQBmADgAZgBlADAAYQAxADYAYQAzAGMAZQBkAGUAAAA8AA4AAQBGAGkAbABlAFYAZQByAHMAaQBv
+AG4AAAAAADEALgAwAC4ANgAyADUAMgAuADUANAA0ADYAAABwACgAAQBJAG4AdABlAHIAbgBhAGwA
+TgBhAG0AZQAAAFMAQwBfAEQAMQAzADAANgA4ADEANwA0ADQAQwBDADQANQAzADgAOQBBADgANwBB
+ADgAMgBGADgAOQA1AEQARgA0ADIAQwAuAGQAbABsAAAAYAAeAAEATABlAGcAYQBsAEMAbwBwAHkA
+cgBpAGcAaAB0AAAAQwBvAHAAeQByAGkAZwBoAHQAIABAACAARQBQAEEATQAgAFMAeQBzAHQAZQBt
+AHMAIAAyADAAMQA0AAAAKgABAAEATABlAGcAYQBsAFQAcgBhAGQAZQBtAGEAcgBrAHMAAAAAAAAA
+AAB4ACgAAQBPAHIAaQBnAGkAbgBhAGwARgBpAGwAZQBuAGEAbQBlAAAAUwBDAF8ARAAxADMAMAA2
+ADgAMQA3ADQANABDAEMANAA1ADMAOAA5AEEAOAA3AEEAOAAyAEYAOAA5ADUARABGADQAMgBDAC4A
+ZABsAGwAAABoACQAAQBQAHIAbwBkAHUAYwB0AE4AYQBtAGUAAAAAAFMAQwBfADIAZQBmADQAYQA1
+ADgAYwA0ADkAZQBiADQAZgAxADMAYgA5AGYAOABmAGUAMABhADEANgBhADMAYwBlAGQAZQAAAEAA
+DgABAFAAcgBvAGQAdQBjAHQAVgBlAHIAcwBpAG8AbgAAADEALgAwAC4ANgAyADUAMgAuADUANAA0
+ADYAAABEAA4AAQBBAHMAcwBlAG0AYgBsAHkAIABWAGUAcgBzAGkAbwBuAAAAMQAuADAALgA2ADIA
+NQAyAC4ANQA0ADQANgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAMAAAA9DQAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA]]></arrayElement>
+                      </arrayElements>
+                    </property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the name of the Microsoft Visual Studio Tools for Applications project. Project names must be unique within a package."
+                      name="VSTAProjectName"
+                      typeConverter="NOTBROWSABLE">SC_d130681744cc45389a87a82f895df42c</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies the programming language used by the script."
+                      name="ScriptLanguage"
+                      typeConverter="Microsoft.SqlServer.VSTAHosting.ScriptingLanguages">CSharp</property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a comma-separated list of read-only variables."
+                      name="ReadOnlyVariables"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIVariablePickerDlg"></property>
+                    <property
+                      dataType="System.String"
+                      description="Specifies a comma-separated list of read/write variables."
+                      name="ReadWriteVariables"
+                      UITypeEditor="Microsoft.DataTransformationServices.Controls.ScriptUIWriteableVariablePickerDlg"></property>
+                    <property
+                      dataType="System.String"
+                      description="List of breakpoints present on the script."
+                      isArray="true"
+                      name="BreakpointCollection"
+                      typeConverter="NOTBROWSABLE">
+                      <arrayElements
+                        arrayElementCount="0" />
+                    </property>
+                    <property
+                      dataType="System.String"
+                      description="Checksum to match component metedata against compiled codes."
+                      name="MetadataChecksum"
+                      typeConverter="NOTBROWSABLE">0c1d4810c6e2ffaa39be3ed7ccf49490</property>
+                    <property
+                      dataType="System.String"
+                      name="UserComponentTypeName">Microsoft.ScriptComponentHost</property>
+                  </properties>
+                  <connections>
+                    <connection
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\SC Historical Comparing.Connections[Connection]"
+                      connectionManagerID="{5CEE1F01-4F52-4DE3-8E2D-2797D8A18207}:external"
+                      connectionManagerRefId="Project.ConnectionManagers[OLEDB UNStatistics Connect]"
+                      name="Connection" />
+                  </connections>
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\SC Historical Comparing.Inputs[Input 0]"
+                      hasSideEffects="true"
+                      name="Input 0">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\SC Historical Comparing.Inputs[Input 0].Columns[SRC_Region]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="SRC_Region"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output].Columns[SRC_Region]" />
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\SC Historical Comparing.Inputs[Input 0].Columns[SRC_SubRegion]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="SRC_SubRegion"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output].Columns[SRC_SubRegion]" />
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\SC Historical Comparing.Inputs[Input 0].Columns[DST_Region]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="DST_Region"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output].Columns[DST_Region]" />
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\SC Historical Comparing.Inputs[Input 0].Columns[DST_SubRegion]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="DST_SubRegion"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output].Columns[DST_SubRegion]" />
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\SC Historical Comparing.Outputs[Output 0]"
+                      name="Output 0"
+                      synchronousInputId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\SC Historical Comparing.Inputs[Input 0]">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\SC Historical Comparing.Outputs[Output 0].Columns[IsEqual]"
+                          dataType="bool"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\SC Historical Comparing.Outputs[Output 0].Columns[IsEqual]"
+                          name="IsEqual" />
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort"
+                  componentClassID="Microsoft.Sort"
+                  contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+                  name="Sort"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                      name="EliminateDuplicates">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the maximum number of threads to use for sorting."
+                      expressionType="Notify"
+                      name="MaximumThreads">-1</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort.Inputs[Sort Input]"
+                      name="Sort Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort.Inputs[Sort Input].Columns[Region]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Region"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Output].Columns[Region]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort.Inputs[Sort Input].Columns[SubRegion]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="SubRegion"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Output].Columns[SubRegion]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort.Inputs[Sort Input].Columns[Country]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Country"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Output].Columns[Country]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">1</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort.Outputs[Sort Output]"
+                      isSorted="true"
+                      name="Sort Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort.Outputs[Sort Output].Columns[Region]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort.Outputs[Sort Output].Columns[Region]"
+                          name="Region">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Output].Columns[Region]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort.Outputs[Sort Output].Columns[SubRegion]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort.Outputs[Sort Output].Columns[SubRegion]"
+                          name="SubRegion">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Output].Columns[SubRegion]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort.Outputs[Sort Output].Columns[Country]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort.Outputs[Sort Output].Columns[Country]"
+                          name="Country"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Output].Columns[Country]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+                <component
+                  refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort 1"
+                  componentClassID="Microsoft.Sort"
+                  contactInfo="Sort;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                  description="Sorts input data in ascending or descending order when it cannot be sorted at its source. For example, sort sales data by 'customer id' before it is written to a flat file and delivered to another department. Note: We do not recommend this transformation for large data flows."
+                  name="Sort 1"
+                  version="1">
+                  <properties>
+                    <property
+                      dataType="System.Boolean"
+                      description="Indicates whether the Sort transformation removes rows with duplicate sort values."
+                      name="EliminateDuplicates">false</property>
+                    <property
+                      dataType="System.Int32"
+                      description="Specifies the maximum number of threads to use for sorting."
+                      expressionType="Notify"
+                      name="MaximumThreads">-1</property>
+                  </properties>
+                  <inputs>
+                    <input
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort 1.Inputs[Sort Input]"
+                      name="Sort Input">
+                      <inputColumns>
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort 1.Inputs[Sort Input].Columns[Region]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Region"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Output].Columns[Region]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort 1.Inputs[Sort Input].Columns[SubRegion]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="SubRegion"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Output].Columns[SubRegion]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">0</property>
+                          </properties>
+                        </inputColumn>
+                        <inputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort 1.Inputs[Sort Input].Columns[Country]"
+                          cachedDataType="wstr"
+                          cachedLength="255"
+                          cachedName="Country"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Output].Columns[Country]">
+                          <properties>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the comparison options for character data."
+                              name="NewComparisonFlags">0</property>
+                            <property
+                              dataType="System.Int32"
+                              description="Specifies the sort order of the column."
+                              name="NewSortKeyPosition">1</property>
+                          </properties>
+                        </inputColumn>
+                      </inputColumns>
+                      <externalMetadataColumns />
+                    </input>
+                  </inputs>
+                  <outputs>
+                    <output
+                      refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort 1.Outputs[Sort Output]"
+                      isSorted="true"
+                      name="Sort Output">
+                      <outputColumns>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort 1.Outputs[Sort Output].Columns[Region]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort 1.Outputs[Sort Output].Columns[Region]"
+                          name="Region">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Output].Columns[Region]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort 1.Outputs[Sort Output].Columns[SubRegion]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort 1.Outputs[Sort Output].Columns[SubRegion]"
+                          name="SubRegion">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Output].Columns[SubRegion]}</property>
+                          </properties>
+                        </outputColumn>
+                        <outputColumn
+                          refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort 1.Outputs[Sort Output].Columns[Country]"
+                          dataType="wstr"
+                          length="255"
+                          lineageId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort 1.Outputs[Sort Output].Columns[Country]"
+                          name="Country"
+                          sortKeyPosition="1">
+                          <properties>
+                            <property
+                              containsID="true"
+                              dataType="System.Int32"
+                              description="Specifies the lineage identifier of the input column that is associated with this output column."
+                              name="SortColumnId">#{Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Output].Columns[Country]}</property>
+                          </properties>
+                        </outputColumn>
+                      </outputColumns>
+                      <externalMetadataColumns />
+                    </output>
+                  </outputs>
+                </component>
+              </components>
+              <paths>
+                <path
+                  refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script.Paths[Change and insert]"
+                  endId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Inputs[Derived Column Input]"
+                  name="Change and insert"
+                  startId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Conditional Split.Outputs[Change and insert]" />
+                <path
+                  refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script.Paths[Derived Column Output]"
+                  endId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Command.Inputs[OLE DB Command Input]"
+                  name="Derived Column Output"
+                  startId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column.Outputs[Derived Column Output]" />
+                <path
+                  refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script.Paths[Merge Join Output]"
+                  endId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\SC Historical Comparing.Inputs[Input 0]"
+                  name="Merge Join Output"
+                  startId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Outputs[Merge Join Output]" />
+                <path
+                  refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script.Paths[OLE DB Command Output]"
+                  endId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                  name="OLE DB Command Output"
+                  startId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Command.Outputs[OLE DB Command Output]" />
+                <path
+                  refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script.Paths[OLE DB Source Output]"
+                  endId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort.Inputs[Sort Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script.Paths[OLE DB Source Output1]"
+                  endId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort 1.Inputs[Sort Input]"
+                  name="OLE DB Source Output"
+                  startId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD.Outputs[OLE DB Source Output]" />
+                <path
+                  refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script.Paths[Output 0]"
+                  endId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Conditional Split.Inputs[Conditional Split Input]"
+                  name="Output 0"
+                  startId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\SC Historical Comparing.Outputs[Output 0]" />
+                <path
+                  refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script.Paths[Sort Output]"
+                  endId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Inputs[Merge Join Left Input]"
+                  name="Sort Output"
+                  startId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort.Outputs[Sort Output]" />
+                <path
+                  refId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script.Paths[Sort Output1]"
+                  endId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join.Inputs[Merge Join Right Input]"
+                  name="Sort Output"
+                  startId="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort 1.Outputs[Sort Output]" />
+              </paths>
+            </pipeline>
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{38E377CB-0C29-4E77-9CFC-D254919EDCEE}"
+      DTS:From="Package\SEQC If full load is needed"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\SEQC Load Dim Country" />
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint 1]"
+      DTS:CreationName=""
+      DTS:DTSID="{90979A9A-BFB0-40B3-ACDA-78D50300B963}"
+      DTS:From="Package\SEQC Load Dim Country"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint 1"
+      DTS:To="Package\Add dummy record (if full load)" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="163,42"
+          Id="Package\Add dummy record (if full load)\Execute SQL Task"
+          TopLeft="73,9" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="250,106"
+          Size="250,149"
+          Id="Package\Add dummy record (if full load)"
+          TopLeft="187,500" />
+        <NodeLayout
+          Size="226,42"
+          Id="Package\SEQC If full load is needed\SQL Truncate DimCountry SCD"
+          TopLeft="47,27" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="337,120"
+          Size="337,163"
+          Id="Package\SEQC If full load is needed"
+          TopLeft="146,41" />
+        <NodeLayout
+          Size="291,42"
+          Id="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script"
+          TopLeft="42,29" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="369,112"
+          Size="369,155"
+          Id="Package\SEQC Load Dim Country"
+          TopLeft="112,280" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="314.5,204">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-18,76"
+              Start="0,0"
+              End="-18,68.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,34" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,34"
+                    Point2="0,38"
+                    Point3="-4,38" />
+                  <mssgle:LineSegment
+                    End="-14,38" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-14,38"
+                    Point2="-18,38"
+                    Point3="-18,42" />
+                  <mssgle:LineSegment
+                    End="-18,68.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint 1]"
+          TopLeft="296.5,435">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="15.5,65"
+              Start="0,0"
+              End="15.5,57.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,28.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,28.5"
+                    Point2="0,32.5"
+                    Point3="4,32.5" />
+                  <mssgle:LineSegment
+                    End="11.5,32.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="11.5,32.5"
+                    Point2="15.5,32.5"
+                    Point3="15.5,36.5" />
+                  <mssgle:LineSegment
+                    End="15.5,57.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="32" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:mssgm="clr-namespace:Microsoft.SqlServer.Graph.Model;assembly=Microsoft.SqlServer.Graph">
+        <NodeLayout
+          Size="98,42"
+          Id="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort"
+          TopLeft="143,80" />
+        <NodeLayout
+          Size="192,42"
+          Id="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\SC Historical Comparing"
+          TopLeft="284,178" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Derived Column"
+          TopLeft="291,317" />
+        <NodeLayout
+          Size="130,42"
+          Id="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Merge Join"
+          TopLeft="322,89" />
+        <NodeLayout
+          Size="156,42"
+          Id="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging"
+          TopLeft="117.5,7.5" />
+        <NodeLayout
+          Size="107,42"
+          Id="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Sort 1"
+          TopLeft="532,97" />
+        <NodeLayout
+          Size="166,42"
+          Id="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Command"
+          TopLeft="279,392" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination"
+          TopLeft="268,457" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\Conditional Split"
+          TopLeft="293,245" />
+        <NodeLayout
+          Size="204,42"
+          Id="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD"
+          TopLeft="490.5,16.5" />
+        <EdgeLayout
+          Id="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script.Paths[Sort Output1]"
+          TopLeft="532,118">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-80,-8"
+              Start="0,0"
+              End="-72.5,-8">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="-36,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-36,0"
+                    Point2="-40,0"
+                    Point3="-40,-4" />
+                  <mssgle:LineSegment
+                    End="-40,-4" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-40,-4"
+                    Point2="-40,-8"
+                    Point3="-44,-8" />
+                  <mssgle:LineSegment
+                    End="-72.5,-8" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script.Paths[Sort Output]"
+          TopLeft="241,101">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="81,9"
+              Start="0,0"
+              End="73.5,9">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="36.5,0" />
+                  <mssgle:CubicBezierSegment
+                    Point1="36.5,0"
+                    Point2="40.5,0"
+                    Point3="40.5,4" />
+                  <mssgle:LineSegment
+                    End="40.5,5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="40.5,5"
+                    Point2="40.5,9"
+                    Point3="44.5,9" />
+                  <mssgle:LineSegment
+                    End="73.5,9" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script.Paths[Output 0]"
+          TopLeft="380,220">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-9.5,25"
+              Start="0,0"
+              End="-9.5,17.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,8.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,8.5"
+                    Point2="0,12.5"
+                    Point3="-4,12.5" />
+                  <mssgle:LineSegment
+                    End="-5.5,12.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-5.5,12.5"
+                    Point2="-9.5,12.5"
+                    Point3="-9.5,16.5" />
+                  <mssgle:LineSegment
+                    End="-9.5,17.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script.Paths[OLE DB Source Output1]"
+          TopLeft="589,58.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,38.5"
+              Start="0,0"
+              End="0,31">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,31" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script.Paths[OLE DB Source Output]"
+          TopLeft="193.75,49.5">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30.5"
+              Start="0,0"
+              End="0,23">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,23" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script.Paths[OLE DB Command Output]"
+          TopLeft="362,434">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-8.5,23"
+              Start="0,0"
+              End="-8.5,15.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,7.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,7.5"
+                    Point2="0,11.5"
+                    Point3="-4,11.5" />
+                  <mssgle:LineSegment
+                    End="-4.5,11.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-4.5,11.5"
+                    Point2="-8.5,11.5"
+                    Point3="-8.5,15.5" />
+                  <mssgle:LineSegment
+                    End="-8.5,15.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script.Paths[Merge Join Output]"
+          TopLeft="383.5,131">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,47"
+              Start="0,0"
+              End="0,39.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,39.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script.Paths[Derived Column Output]"
+          TopLeft="365,359">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,33"
+              Start="0,0"
+              End="0,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script.Paths[Change and insert]"
+          TopLeft="369.25,287">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="0,30"
+              Start="0,0"
+              End="0,22.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,22.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <mssgm:EdgeLabel
+              BoundingBox="-41.01390625,5.41845703125,82.0278125,11.6630859375"
+              RelativePosition="Any" />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Staging">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\SEQC Load Dim Country\DTF Load Dim Country With generated script\OLE_DB Dim Country SCD">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>

@@ -1,0 +1,18 @@
+E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\Sevak\car repair shop DWH\car repair shop DWH\bin\Debug\car repair shop DWH.dacpac
+E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\Sevak\car repair shop DWH\car repair shop DWH\bin\Debug\UN_Statistic_DWH.dll
+E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\Sevak\car repair shop DWH\car repair shop DWH\bin\Debug\UN_Statistic_DWH.pdb
+E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\Sevak\car repair shop DWH\car repair shop DWH\obj\Debug\Model.xml
+E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\Sevak\car repair shop DWH\car repair shop DWH\obj\Debug\refactor.xml
+E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\Sevak\car repair shop DWH\car repair shop DWH\obj\Debug\postdeploy.sql
+E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\Sevak\car repair shop DWH\car repair shop DWH\obj\Debug\predeploy.sql
+E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\Sevak\car repair shop DWH\car repair shop DWH\obj\Debug\UN_Statistic_DWH.dll
+E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\Sevak\car repair shop DWH\car repair shop DWH\obj\Debug\UN_Statistic_DWH.pdb
+D:\FILES\Avetisyan_DWH\car repair shop DWH\car repair shop DWH\bin\Debug\car repair shop DWH.dacpac
+D:\FILES\Avetisyan_DWH\car repair shop DWH\car repair shop DWH\bin\Debug\UN_Statistic_DWH.dll
+D:\FILES\Avetisyan_DWH\car repair shop DWH\car repair shop DWH\bin\Debug\UN_Statistic_DWH.pdb
+D:\FILES\Avetisyan_DWH\car repair shop DWH\car repair shop DWH\obj\Debug\Model.xml
+D:\FILES\Avetisyan_DWH\car repair shop DWH\car repair shop DWH\obj\Debug\refactor.xml
+D:\FILES\Avetisyan_DWH\car repair shop DWH\car repair shop DWH\obj\Debug\postdeploy.sql
+D:\FILES\Avetisyan_DWH\car repair shop DWH\car repair shop DWH\obj\Debug\predeploy.sql
+D:\FILES\Avetisyan_DWH\car repair shop DWH\car repair shop DWH\obj\Debug\UN_Statistic_DWH.dll
+D:\FILES\Avetisyan_DWH\car repair shop DWH\car repair shop DWH\obj\Debug\UN_Statistic_DWH.pdb

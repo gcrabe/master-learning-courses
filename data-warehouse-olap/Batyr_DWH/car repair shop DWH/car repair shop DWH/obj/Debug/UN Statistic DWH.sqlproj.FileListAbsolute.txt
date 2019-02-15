@@ -1,0 +1,14 @@
+D:\Projects\MSBICourse\UN Statistic DWH\UN Statistic DWH\bin\Debug\UN Statistic DWH.dacpac
+D:\Projects\MSBICourse\UN Statistic DWH\UN Statistic DWH\bin\Debug\UN_Statistic_DWH.dll
+D:\Projects\MSBICourse\UN Statistic DWH\UN Statistic DWH\bin\Debug\UN_Statistic_DWH.pdb
+D:\Projects\MSBICourse\UN Statistic DWH\UN Statistic DWH\obj\Debug\UN_Statistic_DWH.dll
+D:\Projects\MSBICourse\UN Statistic DWH\UN Statistic DWH\obj\Debug\UN_Statistic_DWH.pdb
+E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\UN Statistic DWH\UN Statistic DWH\bin\Debug\UN Statistic DWH.dacpac
+E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\UN Statistic DWH\UN Statistic DWH\bin\Debug\UN_Statistic_DWH.dll
+E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\UN Statistic DWH\UN Statistic DWH\bin\Debug\UN_Statistic_DWH.pdb
+E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\UN Statistic DWH\UN Statistic DWH\obj\Debug\Model.xml
+E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\UN Statistic DWH\UN Statistic DWH\obj\Debug\refactor.xml
+E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\UN Statistic DWH\UN Statistic DWH\obj\Debug\postdeploy.sql
+E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\UN Statistic DWH\UN Statistic DWH\obj\Debug\predeploy.sql
+E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\UN Statistic DWH\UN Statistic DWH\obj\Debug\UN_Statistic_DWH.dll
+E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\UN Statistic DWH\UN Statistic DWH\obj\Debug\UN_Statistic_DWH.pdb

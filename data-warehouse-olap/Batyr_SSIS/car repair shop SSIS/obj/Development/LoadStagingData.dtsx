@@ -1,0 +1,1650 @@
+<?xml version="1.0"?>
+<DTS:Executable xmlns:DTS="www.microsoft.com/SqlServer/Dts"
+  DTS:refId="Package"
+  DTS:CreationDate="1/23/2017 1:48:56 AM"
+  DTS:CreationName="Microsoft.Package"
+  DTS:CreatorComputerName="EPRUSARW0596"
+  DTS:CreatorName="SARATOV\Kirill_Evseev"
+  DTS:DTSID="{042714FB-00C3-40B1-8CF1-91F38BBAFAFC}"
+  DTS:ExecutableType="Microsoft.Package"
+  DTS:LastModifiedProductVersion="14.0.3008.28"
+  DTS:LocaleID="1033"
+  DTS:ObjectName="LoadStagingData"
+  DTS:PackageType="5"
+  DTS:VersionBuild="93"
+  DTS:VersionGUID="{40E8A62F-DA24-4D1C-B030-A13D7634A6E0}">
+  <DTS:Property
+    DTS:Name="PackageFormatVersion">8</DTS:Property>
+  <DTS:ConnectionManagers>
+    <DTS:ConnectionManager
+      DTS:refId="Package.ConnectionManagers[Excel Connection Manager]"
+      DTS:CreationName="EXCEL"
+      DTS:DelayValidation="True"
+      DTS:DTSID="{4CF5D708-0EBB-4931-9399-FB46E8AC9FEA}"
+      DTS:ObjectName="Excel Connection Manager">
+      <DTS:PropertyExpression
+        DTS:Name="ExcelFilePath">@[User::CurrentFileName]</DTS:PropertyExpression>
+      <DTS:ObjectData>
+        <DTS:ConnectionManager
+          DTS:ConnectionString="Provider=Microsoft.Jet.OLEDB.4.0;Data Source=E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\Sevak\ExcelSourceCosts\BMW.xls;Extended Properties=&quot;EXCEL 8.0;HDR=YES&quot;;" />
+      </DTS:ObjectData>
+    </DTS:ConnectionManager>
+  </DTS:ConnectionManagers>
+  <DTS:LogProviders>
+    <DTS:LogProvider
+      DTS:ConfigString="OLEDB UNStatistics Connect"
+      DTS:CreationName="Microsoft.LogProviderSQLServer"
+      DTS:Description="Writes log entries for events to a SQL Server database"
+      DTS:DTSID="{940F02F5-8655-421E-ABD8-B7C08DF3DC19}"
+      DTS:ObjectName="SSIS log provider for SQL Server">
+      <DTS:ObjectData>
+        <InnerObject />
+      </DTS:ObjectData>
+    </DTS:LogProvider>
+  </DTS:LogProviders>
+  <DTS:PackageParameters>
+    <DTS:PackageParameter
+      DTS:CreationName=""
+      DTS:DataType="8"
+      DTS:DTSID="{6643462F-7941-49F4-B36E-466089DEAC90}"
+      DTS:ObjectName="NameFile">
+      <DTS:Property
+        DTS:DataType="8"
+        DTS:Name="ParameterValue"
+        xml:space="preserve"></DTS:Property>
+    </DTS:PackageParameter>
+  </DTS:PackageParameters>
+  <DTS:Variables>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{4C665254-E8B5-42D1-A5DC-F8313F3E3991}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CrimeTypeName">
+      <DTS:VariableValue
+        DTS:DataType="8">\\ECSC0010539B\MSBI.Dev.Course.Shared\SourceFiles\KE\ExcelSourceCrimeSSIS\Assault</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{64ABD3FF-5E7F-474D-9375-B502D6E35ECA}"
+      DTS:EvaluateAsExpression="True"
+      DTS:Expression="@[$Project::ExcelFilePath] + &quot;\\&quot; +  @[User::FileName]"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="CurrentFileName">
+      <DTS:VariableValue
+        DTS:DataType="8">E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\Sevak\ExcelSourceCosts\BMW.xls</DTS:VariableValue>
+    </DTS:Variable>
+    <DTS:Variable
+      DTS:CreationName=""
+      DTS:DTSID="{C30C6554-75EF-4ABB-A8E8-7D563D30367A}"
+      DTS:IncludeInDebugDump="2345"
+      DTS:Namespace="User"
+      DTS:ObjectName="FileName">
+      <DTS:VariableValue
+        DTS:DataType="8">BMW.xls</DTS:VariableValue>
+    </DTS:Variable>
+  </DTS:Variables>
+  <DTS:LoggingOptions
+    DTS:FilterKind="0"
+    DTS:LoggingMode="1">
+    <DTS:Property
+      DTS:DataType="8"
+      DTS:Name="EventFilter">3,7,OnError,13,OnPostExecute,12,OnPreExecute</DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnError"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPostValidate"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnPreExecute"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:Property
+      DTS:EventName="OnProgress"
+      DTS:Name="ColumnFilter">
+      <DTS:Property
+        DTS:Name="Computer">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="Operator">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceName">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="SourceID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="ExecutionID">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="MessageText">-1</DTS:Property>
+      <DTS:Property
+        DTS:Name="DataBytes">-1</DTS:Property>
+    </DTS:Property>
+    <DTS:SelectedLogProviders>
+      <DTS:SelectedLogProvider
+        DTS:InstanceID="{940F02F5-8655-421E-ABD8-B7C08DF3DC19}" />
+    </DTS:SelectedLogProviders>
+  </DTS:LoggingOptions>
+  <DTS:Executables>
+    <DTS:Executable
+      DTS:refId="Package\Sequence Container"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{FE5B01AD-C824-4922-9141-7AFFF6597D22}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="Sequence Container">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\Sequence Container\Foreach Loop Container"
+          DTS:CreationName="STOCK:FOREACHLOOP"
+          DTS:Description="Foreach Loop Container"
+          DTS:DTSID="{8B233B1E-7889-4074-91E2-619E3F61B9FB}"
+          DTS:ExecutableType="STOCK:FOREACHLOOP"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Foreach Loop Container">
+          <DTS:ForEachEnumerator
+            DTS:CreationName="Microsoft.ForEachFileEnumerator"
+            DTS:DTSID="{4DFEF93C-62F5-4E3D-98A6-B33F7D36954D}"
+            DTS:ObjectName="{4DFEF93C-62F5-4E3D-98A6-B33F7D36954D}">
+            <DTS:PropertyExpression
+              DTS:Name="Directory">@[$Project::ExcelFilePath]</DTS:PropertyExpression>
+            <DTS:ObjectData>
+              <ForEachFileEnumeratorProperties>
+                <FEFEProperty
+                  Folder="E:\2017 комп\msbi-course-kirill_evseev-master-ab87c736270db6989afe532a73333823b518ef6f\Sevak\ExcelSourceCosts" />
+                <FEFEProperty
+                  FileSpec="*.xls" />
+                <FEFEProperty
+                  FileNameRetrievalType="2" />
+                <FEFEProperty
+                  Recurse="0" />
+              </ForEachFileEnumeratorProperties>
+            </DTS:ObjectData>
+          </DTS:ForEachEnumerator>
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:Executables>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task"
+              DTS:CreationName="Microsoft.Pipeline"
+              DTS:Description="Data Flow Task"
+              DTS:DTSID="{4DD818B7-4F24-411D-9FA5-8ADEF9F6B260}"
+              DTS:ExecutableType="Microsoft.Pipeline"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Data Flow Task"
+              DTS:TaskContact="Performs high-performance data extraction, transformation and loading;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved;http://www.microsoft.com/sql/support/default.asp;1">
+              <DTS:Variables />
+              <DTS:LoggingOptions
+                DTS:FilterKind="0" />
+              <DTS:ObjectData>
+                <pipeline
+                  version="1">
+                  <components>
+                    <component
+                      refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Derived Column"
+                      componentClassID="Microsoft.DerivedColumn"
+                      contactInfo="Derived Column;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;0"
+                      description="Creates new column values by applying expressions to transformation input columns. Create new columns or overwrite existing ones. For example, concatenate the values from the 'first name' and 'last name' column to make a 'full name' column."
+                      name="Derived Column"
+                      usesDispositions="true">
+                      <inputs>
+                        <input
+                          refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                          description="Input to the Derived Column Transformation"
+                          name="Derived Column Input">
+                          <externalMetadataColumns />
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Output]"
+                          description="Default Output of the Derived Column Transformation"
+                          exclusionGroup="1"
+                          name="Derived Column Output"
+                          synchronousInputId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[FileName]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Computation"
+                              errorRowDisposition="FailComponent"
+                              length="81"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[FileName]"
+                              name="FileName"
+                              truncationRowDisposition="FailComponent">
+                              <properties>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Expression"
+                                  name="Expression">@[User::CrimeTypeName]</property>
+                                <property
+                                  containsID="true"
+                                  dataType="System.String"
+                                  description="Derived Column Friendly Expression"
+                                  expressionType="Notify"
+                                  name="FriendlyExpression">@[User::CrimeTypeName]</property>
+                              </properties>
+                            </outputColumn>
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                        <output
+                          refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Error Output]"
+                          description="Error Output of the Derived Column Transformation"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="Derived Column Error Output"
+                          synchronousInputId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Derived Column.Inputs[Derived Column Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source"
+                      componentClassID="Microsoft.ExcelSource"
+                      contactInfo="Excel Source;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;1"
+                      description="Excel Source"
+                      name="Excel Source"
+                      usesDispositions="true"
+                      version="1">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the name of the database object used to open a rowset."
+                          name="OpenRowset">Sheet1$</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable that contains the name of the database object used to open a rowset."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                        <property
+                          dataType="System.String"
+                          description="The variable that contains the SQL command to be executed."
+                          name="SqlCommandVariable"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the mode used to access the database."
+                          name="AccessMode"
+                          typeConverter="AccessMode">0</property>
+                        <property
+                          dataType="System.String"
+                          description="The mapping from parameters in the SQL command to variables."
+                          name="ParameterMapping"></property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Connections[OleDbConnection]"
+                          connectionManagerID="Package.ConnectionManagers[Excel Connection Manager]"
+                          connectionManagerRefId="Package.ConnectionManagers[Excel Connection Manager]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <outputs>
+                        <output
+                          refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output]"
+                          name="Excel Source Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Region]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Region]"
+                              length="255"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Region]"
+                              name="Region"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Sub Region]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Sub Region]"
+                              length="255"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Sub Region]"
+                              name="Sub Region"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Country]"
+                              dataType="wstr"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Country]"
+                              length="255"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Country]"
+                              name="Country"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2003]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2003]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2003]"
+                              name="total2003"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2004]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2004]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2004]"
+                              name="total2004"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2005]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2005]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2005]"
+                              name="total2005"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2006]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2006]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2006]"
+                              name="total2006"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2007]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2007]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2007]"
+                              name="total2007"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2008]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2008]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2008]"
+                              name="total2008"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2009]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2009]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2009]"
+                              name="total2009"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2010]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2010]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2010]"
+                              name="total2010"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2011]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2011]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2011]"
+                              name="total2011"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2012]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2012]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2012]"
+                              name="total2012"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2013]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2013]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2013]"
+                              name="total2013"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2014]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2014]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2014]"
+                              name="total2014"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2003]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2003]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2003]"
+                              name="rate2003"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2004]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2004]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2004]"
+                              name="rate2004"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2005]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2005]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2005]"
+                              name="rate2005"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2006]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2006]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2006]"
+                              name="rate2006"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2007]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2007]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2007]"
+                              name="rate2007"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2008]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2008]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2008]"
+                              name="rate2008"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2009]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2009]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2009]"
+                              name="rate2009"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2010]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2010]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2010]"
+                              name="rate2010"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2011]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2011]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2011]"
+                              name="rate2011"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2012]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2012]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2012]"
+                              name="rate2012"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2013]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2013]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2013]"
+                              name="rate2013"
+                              truncationRowDisposition="FailComponent" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2014]"
+                              dataType="r8"
+                              errorOrTruncationOperation="Conversion"
+                              errorRowDisposition="FailComponent"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2014]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2014]"
+                              name="rate2014"
+                              truncationRowDisposition="FailComponent" />
+                          </outputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Region]"
+                              dataType="wstr"
+                              length="255"
+                              name="Region" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Sub Region]"
+                              dataType="wstr"
+                              length="255"
+                              name="Sub Region" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[Country]"
+                              dataType="wstr"
+                              length="255"
+                              name="Country" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2003]"
+                              dataType="r8"
+                              name="total2003" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2004]"
+                              dataType="r8"
+                              name="total2004" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2005]"
+                              dataType="r8"
+                              name="total2005" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2006]"
+                              dataType="r8"
+                              name="total2006" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2007]"
+                              dataType="r8"
+                              name="total2007" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2008]"
+                              dataType="r8"
+                              name="total2008" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2009]"
+                              dataType="r8"
+                              name="total2009" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2010]"
+                              dataType="r8"
+                              name="total2010" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2011]"
+                              dataType="r8"
+                              name="total2011" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2012]"
+                              dataType="r8"
+                              name="total2012" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2013]"
+                              dataType="r8"
+                              name="total2013" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[total2014]"
+                              dataType="r8"
+                              name="total2014" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2003]"
+                              dataType="r8"
+                              name="rate2003" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2004]"
+                              dataType="r8"
+                              name="rate2004" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2005]"
+                              dataType="r8"
+                              name="rate2005" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2006]"
+                              dataType="r8"
+                              name="rate2006" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2007]"
+                              dataType="r8"
+                              name="rate2007" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2008]"
+                              dataType="r8"
+                              name="rate2008" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2009]"
+                              dataType="r8"
+                              name="rate2009" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2010]"
+                              dataType="r8"
+                              name="rate2010" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2011]"
+                              dataType="r8"
+                              name="rate2011" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2012]"
+                              dataType="r8"
+                              name="rate2012" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2013]"
+                              dataType="r8"
+                              name="rate2013" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].ExternalColumns[rate2014]"
+                              dataType="r8"
+                              name="rate2014" />
+                          </externalMetadataColumns>
+                        </output>
+                        <output
+                          refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output]"
+                          isErrorOut="true"
+                          name="Excel Source Error Output">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Region]"
+                              dataType="wstr"
+                              length="255"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Region]"
+                              name="Region" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Sub Region]"
+                              dataType="wstr"
+                              length="255"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Sub Region]"
+                              name="Sub Region" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Country]"
+                              dataType="wstr"
+                              length="255"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[Country]"
+                              name="Country" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2003]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2003]"
+                              name="total2003" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2004]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2004]"
+                              name="total2004" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2005]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2005]"
+                              name="total2005" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2006]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2006]"
+                              name="total2006" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2007]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2007]"
+                              name="total2007" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2008]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2008]"
+                              name="total2008" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2009]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2009]"
+                              name="total2009" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2010]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2010]"
+                              name="total2010" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2011]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2011]"
+                              name="total2011" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2012]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2012]"
+                              name="total2012" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2013]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2013]"
+                              name="total2013" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2014]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[total2014]"
+                              name="total2014" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2003]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2003]"
+                              name="rate2003" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2004]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2004]"
+                              name="rate2004" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2005]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2005]"
+                              name="rate2005" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2006]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2006]"
+                              name="rate2006" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2007]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2007]"
+                              name="rate2007" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2008]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2008]"
+                              name="rate2008" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2009]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2009]"
+                              name="rate2009" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2010]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2010]"
+                              name="rate2010" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2011]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2011]"
+                              name="rate2011" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2012]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2012]"
+                              name="rate2012" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2013]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2013]"
+                              name="rate2013" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2014]"
+                              dataType="r8"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[rate2014]"
+                              name="rate2014" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                    <component
+                      refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination"
+                      componentClassID="Microsoft.OLEDBDestination"
+                      contactInfo="OLE DB Destination;Microsoft Corporation; Microsoft SQL Server; (C) Microsoft Corporation; All Rights Reserved; http://www.microsoft.com/sql/support;4"
+                      description="OLE DB Destination"
+                      name="OLE DB Destination"
+                      usesDispositions="true"
+                      version="4">
+                      <properties>
+                        <property
+                          dataType="System.Int32"
+                          description="The number of seconds before a command times out.  A value of 0 indicates an infinite time-out."
+                          name="CommandTimeout">0</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the name of the database object used to open a rowset."
+                          name="OpenRowset">[stg].[ServiceData]</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies the variable that contains the name of the database object used to open a rowset."
+                          name="OpenRowsetVariable"></property>
+                        <property
+                          dataType="System.String"
+                          description="The SQL command to be executed."
+                          name="SqlCommand"
+                          UITypeEditor="Microsoft.DataTransformationServices.Controls.ModalMultilineStringEditor, Microsoft.DataTransformationServices.Controls, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91"></property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the column code page to use when code page information is unavailable from the data source."
+                          name="DefaultCodePage">1252</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Forces the use of the DefaultCodePage property value when describing character data."
+                          name="AlwaysUseDefaultCodePage">false</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies the mode used to access the database."
+                          name="AccessMode"
+                          typeConverter="AccessMode">3</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the values supplied for identity columns will be copied to the destination. If false, values for identity columns will be auto-generated at the destination. Applies only if fast load is turned on."
+                          name="FastLoadKeepIdentity">false</property>
+                        <property
+                          dataType="System.Boolean"
+                          description="Indicates whether the columns containing null will have null inserted in the destination. If false, columns containing null will have their default values inserted at the destination. Applies only if fast load is turned on."
+                          name="FastLoadKeepNulls">false</property>
+                        <property
+                          dataType="System.String"
+                          description="Specifies options to be used with fast load.  Applies only if fast load is turned on."
+                          name="FastLoadOptions">TABLOCK,CHECK_CONSTRAINTS</property>
+                        <property
+                          dataType="System.Int32"
+                          description="Specifies when commits are issued during data insertion.  A value of 0 specifies that one commit will be issued at the end of data insertion.  Applies only if fast load is turned on."
+                          name="FastLoadMaxInsertCommitSize">2147483647</property>
+                      </properties>
+                      <connections>
+                        <connection
+                          refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Connections[OleDbConnection]"
+                          connectionManagerID="{5CEE1F01-4F52-4DE3-8E2D-2797D8A18207}:external"
+                          connectionManagerRefId="Project.ConnectionManagers[OLEDB UNStatistics Connect]"
+                          description="The OLE DB runtime connection used to access the database."
+                          name="OleDbConnection" />
+                      </connections>
+                      <inputs>
+                        <input
+                          refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                          errorOrTruncationOperation="Insert"
+                          errorRowDisposition="FailComponent"
+                          hasSideEffects="true"
+                          name="OLE DB Destination Input">
+                          <inputColumns>
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Region]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="Region"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Region]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Country]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="Country"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Country]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[total2003]"
+                              cachedDataType="r8"
+                              cachedName="total2003"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2003]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2003]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[total2004]"
+                              cachedDataType="r8"
+                              cachedName="total2004"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2004]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2004]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[total2005]"
+                              cachedDataType="r8"
+                              cachedName="total2005"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2005]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2005]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[total2006]"
+                              cachedDataType="r8"
+                              cachedName="total2006"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2006]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2006]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[total2007]"
+                              cachedDataType="r8"
+                              cachedName="total2007"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2007]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2007]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[total2008]"
+                              cachedDataType="r8"
+                              cachedName="total2008"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2008]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2008]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[total2009]"
+                              cachedDataType="r8"
+                              cachedName="total2009"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2009]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2009]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[total2010]"
+                              cachedDataType="r8"
+                              cachedName="total2010"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2010]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2010]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[total2011]"
+                              cachedDataType="r8"
+                              cachedName="total2011"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2011]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2011]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[total2012]"
+                              cachedDataType="r8"
+                              cachedName="total2012"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2012]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2012]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[total2013]"
+                              cachedDataType="r8"
+                              cachedName="total2013"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2013]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2013]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[total2014]"
+                              cachedDataType="r8"
+                              cachedName="total2014"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2014]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[total2014]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[rate2003]"
+                              cachedDataType="r8"
+                              cachedName="rate2003"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2003]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2003]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[rate2004]"
+                              cachedDataType="r8"
+                              cachedName="rate2004"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2004]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2004]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[rate2005]"
+                              cachedDataType="r8"
+                              cachedName="rate2005"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2005]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2005]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[rate2006]"
+                              cachedDataType="r8"
+                              cachedName="rate2006"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2006]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2006]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[rate2007]"
+                              cachedDataType="r8"
+                              cachedName="rate2007"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2007]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2007]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[rate2008]"
+                              cachedDataType="r8"
+                              cachedName="rate2008"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2008]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2008]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[rate2009]"
+                              cachedDataType="r8"
+                              cachedName="rate2009"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2009]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2009]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[rate2010]"
+                              cachedDataType="r8"
+                              cachedName="rate2010"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2010]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2010]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[rate2011]"
+                              cachedDataType="r8"
+                              cachedName="rate2011"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2011]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2011]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[rate2012]"
+                              cachedDataType="r8"
+                              cachedName="rate2012"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2012]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2012]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[rate2013]"
+                              cachedDataType="r8"
+                              cachedName="rate2013"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2013]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2013]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[rate2014]"
+                              cachedDataType="r8"
+                              cachedName="rate2014"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2014]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[rate2014]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[Sub Region]"
+                              cachedDataType="wstr"
+                              cachedLength="255"
+                              cachedName="Sub Region"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SubRegion]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output].Columns[Sub Region]" />
+                            <inputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].Columns[FileName]"
+                              cachedDataType="wstr"
+                              cachedLength="81"
+                              cachedName="FileName"
+                              externalMetadataColumnId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SysSourceName]"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Output].Columns[FileName]" />
+                          </inputColumns>
+                          <externalMetadataColumns
+                            isUsed="True">
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Region]"
+                              dataType="wstr"
+                              length="255"
+                              name="Region" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SubRegion]"
+                              dataType="wstr"
+                              length="255"
+                              name="SubRegion" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[Country]"
+                              dataType="wstr"
+                              length="255"
+                              name="Country" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2003]"
+                              dataType="wstr"
+                              length="255"
+                              name="total2003" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2004]"
+                              dataType="wstr"
+                              length="255"
+                              name="total2004" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2005]"
+                              dataType="wstr"
+                              length="255"
+                              name="total2005" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2006]"
+                              dataType="wstr"
+                              length="255"
+                              name="total2006" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2007]"
+                              dataType="wstr"
+                              length="255"
+                              name="total2007" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2008]"
+                              dataType="wstr"
+                              length="255"
+                              name="total2008" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2009]"
+                              dataType="wstr"
+                              length="255"
+                              name="total2009" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2010]"
+                              dataType="wstr"
+                              length="255"
+                              name="total2010" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2011]"
+                              dataType="wstr"
+                              length="255"
+                              name="total2011" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2012]"
+                              dataType="wstr"
+                              length="255"
+                              name="total2012" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2013]"
+                              dataType="wstr"
+                              length="255"
+                              name="total2013" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[total2014]"
+                              dataType="wstr"
+                              length="255"
+                              name="total2014" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2003]"
+                              dataType="wstr"
+                              length="255"
+                              name="rate2003" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2004]"
+                              dataType="wstr"
+                              length="255"
+                              name="rate2004" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2005]"
+                              dataType="wstr"
+                              length="255"
+                              name="rate2005" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2006]"
+                              dataType="wstr"
+                              length="255"
+                              name="rate2006" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2007]"
+                              dataType="wstr"
+                              length="255"
+                              name="rate2007" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2008]"
+                              dataType="wstr"
+                              length="255"
+                              name="rate2008" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2009]"
+                              dataType="wstr"
+                              length="255"
+                              name="rate2009" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2010]"
+                              dataType="wstr"
+                              length="255"
+                              name="rate2010" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2011]"
+                              dataType="wstr"
+                              length="255"
+                              name="rate2011" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2012]"
+                              dataType="wstr"
+                              length="255"
+                              name="rate2012" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2013]"
+                              dataType="wstr"
+                              length="255"
+                              name="rate2013" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[rate2014]"
+                              dataType="wstr"
+                              length="255"
+                              name="rate2014" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SysDateCreated]"
+                              dataType="dbTimeStamp"
+                              name="SysDateCreated" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[SysSourceName]"
+                              dataType="wstr"
+                              length="255"
+                              name="SysSourceName" />
+                            <externalMetadataColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input].ExternalColumns[UNServiceDataKey]"
+                              dataType="i4"
+                              name="UNServiceDataKey" />
+                          </externalMetadataColumns>
+                        </input>
+                      </inputs>
+                      <outputs>
+                        <output
+                          refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output]"
+                          exclusionGroup="1"
+                          isErrorOut="true"
+                          name="OLE DB Destination Error Output"
+                          synchronousInputId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]">
+                          <outputColumns>
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                              dataType="i4"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorCode]"
+                              name="ErrorCode"
+                              specialFlags="1" />
+                            <outputColumn
+                              refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                              dataType="i4"
+                              lineageId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Outputs[OLE DB Destination Error Output].Columns[ErrorColumn]"
+                              name="ErrorColumn"
+                              specialFlags="2" />
+                          </outputColumns>
+                          <externalMetadataColumns />
+                        </output>
+                      </outputs>
+                    </component>
+                  </components>
+                  <paths>
+                    <path
+                      refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task.Paths[Derived Column Output]"
+                      endId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination.Inputs[OLE DB Destination Input]"
+                      name="Derived Column Output"
+                      startId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Derived Column.Outputs[Derived Column Output]" />
+                    <path
+                      refId="Package\Sequence Container\Foreach Loop Container\Data Flow Task.Paths[Excel Source Output]"
+                      endId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Derived Column.Inputs[Derived Column Input]"
+                      name="Excel Source Output"
+                      startId="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source.Outputs[Excel Source Output]" />
+                  </paths>
+                </pipeline>
+              </DTS:ObjectData>
+            </DTS:Executable>
+            <DTS:Executable
+              DTS:refId="Package\Sequence Container\Foreach Loop Container\Expression Task"
+              DTS:CreationName="Microsoft.ExpressionTask"
+              DTS:Description="Expression Task"
+              DTS:DTSID="{3F76926B-3B25-4B5F-8F15-7ADF9F6BE47F}"
+              DTS:ExecutableType="Microsoft.ExpressionTask"
+              DTS:LocaleID="-1"
+              DTS:ObjectName="Expression Task"
+              DTS:ThreadHint="0">
+              <DTS:Variables />
+              <DTS:LoggingOptions
+                DTS:FilterKind="0" />
+              <DTS:ObjectData>
+                <ExpressionTask
+                  Expression="@[User::CrimeTypeName] =REVERSE( &#xA;    SUBSTRING(REVERSE( REPLACE( @[User::CurrentFileName], &quot;.xls&quot;, &quot;&quot;)),&#xA;    &#x9;      1,&#xA;    &#x9;      FINDSTRING( REVERSE( REPLACE( @[User::CurrentFileName], &quot;.xls&quot;, &quot;&quot;)), &quot;\\&quot;,1)-1))" />
+              </DTS:ObjectData>
+            </DTS:Executable>
+          </DTS:Executables>
+          <DTS:PrecedenceConstraints>
+            <DTS:PrecedenceConstraint
+              DTS:refId="Package\Sequence Container\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+              DTS:CreationName=""
+              DTS:DTSID="{1522C058-FA53-4E2F-8510-550817739583}"
+              DTS:From="Package\Sequence Container\Foreach Loop Container\Expression Task"
+              DTS:LogicalAnd="True"
+              DTS:ObjectName="Constraint"
+              DTS:To="Package\Sequence Container\Foreach Loop Container\Data Flow Task" />
+          </DTS:PrecedenceConstraints>
+          <DTS:ForEachVariableMappings>
+            <DTS:ForEachVariableMapping
+              DTS:CreationName=""
+              DTS:DTSID="{0A82E3EA-6CF1-45C4-B1E9-A941F81EAB19}"
+              DTS:ObjectName="{0A82E3EA-6CF1-45C4-B1E9-A941F81EAB19}"
+              DTS:ValueIndex="0"
+              DTS:VariableName="User::FileName" />
+          </DTS:ForEachVariableMappings>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+    <DTS:Executable
+      DTS:refId="Package\TruncateTable"
+      DTS:CreationName="STOCK:SEQUENCE"
+      DTS:Description="Sequence Container"
+      DTS:DTSID="{086C18F2-BA65-4905-9DB7-07417C7B39B0}"
+      DTS:ExecutableType="STOCK:SEQUENCE"
+      DTS:LocaleID="-1"
+      DTS:ObjectName="TruncateTable">
+      <DTS:Variables />
+      <DTS:LoggingOptions
+        DTS:FilterKind="0" />
+      <DTS:Executables>
+        <DTS:Executable
+          DTS:refId="Package\TruncateTable\Execute SQL Task"
+          DTS:CreationName="Microsoft.ExecuteSQLTask"
+          DTS:Description="Execute SQL Task"
+          DTS:DTSID="{31ABC545-97CE-4B01-80B8-ACB2DDE8B47D}"
+          DTS:ExecutableType="Microsoft.ExecuteSQLTask"
+          DTS:LocaleID="-1"
+          DTS:ObjectName="Execute SQL Task"
+          DTS:ThreadHint="0">
+          <DTS:Variables />
+          <DTS:LoggingOptions
+            DTS:FilterKind="0" />
+          <DTS:ObjectData>
+            <SQLTask:SqlTaskData
+              SQLTask:Connection="{5CEE1F01-4F52-4DE3-8E2D-2797D8A18207}"
+              SQLTask:SqlStatementSource="Truncate table stg.ServiceData" xmlns:SQLTask="www.microsoft.com/sqlserver/dts/tasks/sqltask" />
+          </DTS:ObjectData>
+        </DTS:Executable>
+      </DTS:Executables>
+    </DTS:Executable>
+  </DTS:Executables>
+  <DTS:PrecedenceConstraints>
+    <DTS:PrecedenceConstraint
+      DTS:refId="Package.PrecedenceConstraints[Constraint]"
+      DTS:CreationName=""
+      DTS:DTSID="{41D39262-A95F-4236-8523-1C8593433A77}"
+      DTS:From="Package\TruncateTable"
+      DTS:LogicalAnd="True"
+      DTS:ObjectName="Constraint"
+      DTS:To="Package\Sequence Container" />
+  </DTS:PrecedenceConstraints>
+  <DTS:DesignTimeProperties><![CDATA[<?xml version="1.0"?>
+<!--This CDATA section contains the layout information of the package. The section includes information such as (x,y) coordinates, width, and height.-->
+<!--If you manually edit this section and make a mistake, you can delete it. -->
+<!--The package will still be able to load normally but the previous layout information will be lost and the designer will automatically re-arrange the elements on the design surface.-->
+<Objects
+  Version="sql12">
+  <!--Each node below will contain properties that do not affect runtime behavior.-->
+  <Package
+    design-time-name="Package">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="151,42"
+          Id="Package\Sequence Container\Foreach Loop Container\Data Flow Task"
+          TopLeft="221,92" />
+        <NodeLayout
+          Size="155,42"
+          Id="Package\Sequence Container\Foreach Loop Container\Expression Task"
+          TopLeft="68,17" />
+        <EdgeLayout
+          Id="Package\Sequence Container\Foreach Loop Container.PrecedenceConstraints[Constraint]"
+          TopLeft="145.5,59">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="151,33"
+              Start="0,0"
+              End="151,25.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,12.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,12.5"
+                    Point2="0,16.5"
+                    Point3="4,16.5" />
+                  <mssgle:LineSegment
+                    End="147,16.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="147,16.5"
+                    Point2="151,16.5"
+                    Point3="151,20.5" />
+                  <mssgle:LineSegment
+                    End="151,25.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="380,185"
+          Size="380,228"
+          Id="Package\Sequence Container\Foreach Loop Container"
+          TopLeft="67,22" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="539,305"
+          Size="539,348"
+          Id="Package\Sequence Container"
+          TopLeft="42,172" />
+        <NodeLayout
+          Size="163,42"
+          Id="Package\TruncateTable\Execute SQL Task"
+          TopLeft="31,21" />
+        <ContainerLayout
+          HeaderHeight="43"
+          IsExpanded="True"
+          PanelSize="200,85"
+          Size="200,128"
+          Id="Package\TruncateTable"
+          TopLeft="174,13" />
+        <EdgeLayout
+          Id="Package.PrecedenceConstraints[Constraint]"
+          TopLeft="274,141">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="37.5,31"
+              Start="0,0"
+              End="37.5,23.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,11.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,11.5"
+                    Point2="0,15.5"
+                    Point3="4,15.5" />
+                  <mssgle:LineSegment
+                    End="33.5,15.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="33.5,15.5"
+                    Point2="37.5,15.5"
+                    Point3="37.5,19.5" />
+                  <mssgle:LineSegment
+                    End="37.5,23.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </Package>
+  <TaskHost
+    design-time-name="Package\Sequence Container\Foreach Loop Container\Data Flow Task">
+    <LayoutInfo>
+      <GraphLayout
+        Capacity="8" xmlns="clr-namespace:Microsoft.SqlServer.IntegrationServices.Designer.Model.Serialization;assembly=Microsoft.SqlServer.IntegrationServices.Graph" xmlns:mssgle="clr-namespace:Microsoft.SqlServer.Graph.LayoutEngine;assembly=Microsoft.SqlServer.Graph" xmlns:assembly="http://schemas.microsoft.com/winfx/2006/xaml">
+        <NodeLayout
+          Size="139,42"
+          Id="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source"
+          TopLeft="183,90" />
+        <NodeLayout
+          Size="154,42"
+          Id="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Derived Column"
+          TopLeft="272,223" />
+        <NodeLayout
+          Size="171,42"
+          Id="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination"
+          TopLeft="244,371" />
+        <EdgeLayout
+          Id="Package\Sequence Container\Foreach Loop Container\Data Flow Task.Paths[Excel Source Output]"
+          TopLeft="252.5,132">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="96.5,91"
+              Start="0,0"
+              End="96.5,83.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,41.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,41.5"
+                    Point2="0,45.5"
+                    Point3="4,45.5" />
+                  <mssgle:LineSegment
+                    End="92.5,45.5" />
+                  <mssgle:CubicBezierSegment
+                    Point1="92.5,45.5"
+                    Point2="96.5,45.5"
+                    Point3="96.5,49.5" />
+                  <mssgle:LineSegment
+                    End="96.5,83.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+        <EdgeLayout
+          Id="Package\Sequence Container\Foreach Loop Container\Data Flow Task.Paths[Derived Column Output]"
+          TopLeft="349,265">
+          <EdgeLayout.Curve>
+            <mssgle:Curve
+              StartConnector="{assembly:Null}"
+              EndConnector="-19.5,106"
+              Start="0,0"
+              End="-19.5,98.5">
+              <mssgle:Curve.Segments>
+                <mssgle:SegmentCollection
+                  Capacity="5">
+                  <mssgle:LineSegment
+                    End="0,49" />
+                  <mssgle:CubicBezierSegment
+                    Point1="0,49"
+                    Point2="0,53"
+                    Point3="-4,53" />
+                  <mssgle:LineSegment
+                    End="-15.5,53" />
+                  <mssgle:CubicBezierSegment
+                    Point1="-15.5,53"
+                    Point2="-19.5,53"
+                    Point3="-19.5,57" />
+                  <mssgle:LineSegment
+                    End="-19.5,98.5" />
+                </mssgle:SegmentCollection>
+              </mssgle:Curve.Segments>
+            </mssgle:Curve>
+          </EdgeLayout.Curve>
+          <EdgeLayout.Labels>
+            <EdgeLabelCollection />
+          </EdgeLayout.Labels>
+        </EdgeLayout>
+      </GraphLayout>
+    </LayoutInfo>
+  </TaskHost>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Foreach Loop Container\Data Flow Task\Excel Source">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+  <PipelineComponentMetadata
+    design-time-name="Package\Sequence Container\Foreach Loop Container\Data Flow Task\OLE DB Destination">
+    <Properties>
+      <Property>
+        <Name>DataSourceViewID</Name>
+      </Property>
+      <Property>
+        <Name>TableInfoObjectType</Name>
+        <Value
+          type="q2:string">Table</Value>
+      </Property>
+    </Properties>
+  </PipelineComponentMetadata>
+</Objects>]]></DTS:DesignTimeProperties>
+</DTS:Executable>
